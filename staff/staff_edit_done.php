@@ -16,7 +16,7 @@
       $staff_name=htmlspecialchars($staff_name,ENT_QUOTES,'UTF-8');
       $staff_pass=htmlspecialchars($staff_pass,ENT_QUOTES,'UTF-8');
 
-      $dns = 'mysql:dbname=shop;host=localhost;sharset=utf8';
+      $dns = 'mysql:dbname=shop;host=localhost;charset=utf8';
       $user = 'root';
       $password = '';
       $dbh = new PDO($dns, $user, $password);

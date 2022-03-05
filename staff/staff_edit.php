@@ -11,7 +11,7 @@
 
       $staff_code = $_GET['staffcode'];
 
-      $dns = 'mysql:dbname=shop;host=localhost;sharset=utf8';
+      $dns = 'mysql:dbname=shop;host=localhost;charset=utf8';
       $user = 'root';
       $password = '';
       $dbh = new PDO($dns, $user, $password);
