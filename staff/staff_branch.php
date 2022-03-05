@@ -19,7 +19,7 @@ if(isset($_POST['add']) == true ){
 }
 if(isset($_POST['disp']) == true ){
 
-    if(isset($_POST['staffcode']) == true ){
+    if(isset($_POST['staffcode']) == false ){
 
         header('Location: staff_ng.php');
         exit();
