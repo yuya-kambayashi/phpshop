@@ -1,10 +1,15 @@
 <?php
 
 if(isset($_POST['edit']) == true ){
-    print '修正ボタンが押された';
+
+    $staff_code=$_POST['staffcode'];
+    header('Location: staff_edit.php?staffcode='.$staff_code);
+    exit();
 }
 if(isset($_POST['delete']) == true ){
-    print '削除ボタンが押された';
-}
+
+    $staff_code=$_POST['staffcode'];
+    header('Location: staff_delete.php'.$staff_code);
+    exit();}
 
 ?>

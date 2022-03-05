@@ -9,7 +9,7 @@
 
     try{
 
-      $staff_code = $_POST['staffcode'];
+      $staff_code = $_GET['staffcode'];
 
       $dns = 'mysql:dbname=shop;host=localhost;sharset=utf8';
       $user = 'root';
