@@ -10,6 +10,13 @@ if(isset($_POST['delete']) == true ){
 
     $staff_code=$_POST['staffcode'];
     header('Location: staff_delete.php?staffcode='.$staff_code);
-    exit();}
+    exit();
+}
+if(isset($_POST['add']) == true ){
+
+    header('Location: staff_add.php');
+    exit();
+}
+
 
 ?>
