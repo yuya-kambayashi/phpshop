@@ -53,7 +53,7 @@
           print '<form method="post" action="pro_add_done.php">';
           print '<input type="hidden" name="name" value="'.$pro_name.'">';
           print '<input type="hidden" name="price" value="'.$pro_price.'">';
-          print '<input type="hidden" name="gazou" value="'.$pro_gazou['name'].'">';
+          print '<input type="hidden" name="gazou_name" value="'.$pro_gazou['name'].'">';
           print '<br />';
           print '<input type="button" onclick="history.back()" value="戻る">';
           print '<input type="submit" value="ＯＫ">';
