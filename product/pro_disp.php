@@ -34,7 +34,6 @@
       }
       else{
         $disp_gazou = '<img src = "./gazou/'.$pro_gazou_name.'">';
-
       }
 
     }catch (Exception $e){
