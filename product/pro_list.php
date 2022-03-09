@@ -49,7 +49,8 @@
 
     ?>
 
-    <a href="staff_list.php">戻る</a>
+    <br />
+    <a href="../staff_login/staff_top.php">戻る</a>
 
   </body>
 </html>
