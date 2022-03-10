@@ -28,6 +28,7 @@
 
       $pro_code = $_GET['procode']; 
 
+      $cart=$_SESSION['cart'];
       $cart[] = $pro_code;
       $_SESSION['cart']=$cart;
 
