@@ -30,6 +30,13 @@
       $kazu = $_SESSION['kazu'];
       $max = count($cart);
 
+      if ($max == 0){
+        print "カートに商品が入っていません。<br />";
+        print "<br />";
+        print '<a href = "shop_list.php">商品一覧に戻る</a>';
+        exit();
+      }
+
       $dns = 'mysql:dbname=shop;host=localhost;charset=utf8';
       $user = 'root';
       $password = '';
