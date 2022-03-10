@@ -28,15 +28,12 @@
 
       $pro_code = $_GET['procode']; 
 
-      $cart=$_SESSION['cart'];
+      if(isset($_SESSION['cart'])==true){
+        $cart=$_SESSION['cart'];
+      }
       $cart[] = $pro_code;
       $_SESSION['cart']=$cart;
-
-      foreach($cart as $key => $val){
-        print $val;
-        print '<br />';
-      }
-
+      
     }catch (Exception $e){
       print 'ただいま障害により大変ご迷惑をおかけしております。';
       exit();
