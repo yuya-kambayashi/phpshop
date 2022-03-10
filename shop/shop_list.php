@@ -58,6 +58,11 @@
       exit();
     }
 
+    print '<br />';
+    print '<a href="shop_cartlook.php">カートを見る</a><br />';
+
     ?>
+
+    
   </body>
 </html>
