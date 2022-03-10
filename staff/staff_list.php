@@ -64,7 +64,7 @@
     ?>
 
     <br />
-    <a href="../staff_login/staff_top.php">戻る</a>
+    <a href="../staff_login/staff_top.php">トップメニューへ</a><br />
 
   </body>
 </html>
