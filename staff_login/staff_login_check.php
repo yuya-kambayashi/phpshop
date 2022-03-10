@@ -1,17 +1,4 @@
 <?php
-    session_start();
-    session_regenerate_id(true);
-    if(isset($_SESSION['login'])==false){
-        print 'ログインされていません。<br />';
-        print '<a href="../staff_login/staff_login.html">ログイン画面へ</a>';
-        exit();
-    }
-    else{
-        print $_SESSION['staff_name'];
-        print 'さんログイン中<br />';
-        print '<br />';
-      }
-
     try{
             
         $staff_code=$_POST['code'];
@@ -48,9 +35,6 @@
             $_SESSION['login']=1;
             $_SESSION['staff_code']=$staff_code;
             $_SESSION['staff_name']=$rec['name'];
-            
-
-
 
             header('Location: staff_top.php');
             exit();   
