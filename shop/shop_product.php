@@ -61,6 +61,7 @@
 
     ?>
 
+    <form>
     商品情報参照<br />
     <br />
     商品コード<br />
@@ -76,7 +77,7 @@
     <br />
     <br />
     <input type="button" onclick="history.back()" value="戻る">
-  </fomr>
+    </form>
 
   </body>
 </html>

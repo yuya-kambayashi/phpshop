@@ -71,11 +71,11 @@
     <?php print $disp_gazou; ?>
     <br />
     <form method="post"action="pro_delete_done.php">
-    <input type="hidden" name="code" value="<?php print $pro_code; ?>">
-    <input type="hidden" name="gazou_name" value="<?php print $pro_gazou_name; ?>">
-    <input type="button" onclick="history.back()" value="戻る">
-    <input type="submit" value="OK">
-  </fomr>
+      <input type="hidden" name="code" value="<?php print $pro_code; ?>">
+      <input type="hidden" name="gazou_name" value="<?php print $pro_gazou_name; ?>">
+      <input type="button" onclick="history.back()" value="戻る">
+      <input type="submit" value="OK">
+    </form>
 
   </body>
 </html>

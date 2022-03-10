@@ -66,21 +66,21 @@
     <br />
     <br />
     <form method="post"action="pro_edit_check.php" enctype="multipart/form-data">
-    <input type="hidden" name="code" value="<?php print $pro_code; ?>">
-    <input type="hidden" name="gazou_name_old" value="<?php print $pro_gazou_name_old; ?>">
-    商品名<br />
-    <input type="text" name="name" style="width:200px" value="<?php print $pro_name;?>"><br />
-    価格をきちんと入力してください。<br />
-    <input type="text" name="price" style="width:50px" value="<?php print $pro_price;?>">円<br />
-    <br />
-    <?php print $disp_gazou; ?>
-    <br />
-    画像を選んでください。<br />
-    <input type="file" name="gazou" style="width:400px"><br />
-    <br />
-    <input type="button" onclick="history.back()" value="戻る">
-    <input type="submit" value="OK">
-  </fomr>
+      <input type="hidden" name="code" value="<?php print $pro_code; ?>">
+      <input type="hidden" name="gazou_name_old" value="<?php print $pro_gazou_name_old; ?>">
+      商品名<br />
+      <input type="text" name="name" style="width:200px" value="<?php print $pro_name;?>"><br />
+      価格をきちんと入力してください。<br />
+      <input type="text" name="price" style="width:50px" value="<?php print $pro_price;?>">円<br />
+      <br />
+      <?php print $disp_gazou; ?>
+      <br />
+      画像を選んでください。<br />
+      <input type="file" name="gazou" style="width:400px"><br />
+      <br />
+      <input type="button" onclick="history.back()" value="戻る">
+      <input type="submit" value="OK">
+    </form>
 
   </body>
 </html>

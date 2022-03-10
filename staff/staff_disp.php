@@ -49,17 +49,18 @@
 
     ?>
 
-    スタッフ情報参照<br />
-    <br />
-    スタッフコード<br />
-    <?php print $staff_code; ?>
-    <br />
-    スタッフ名<br />
-    <?php print $staff_name; ?>
-    <br />
-    <br />
-    <input type="button" onclick="history.back()" value="戻る">
-  </fomr>
+    <form>
+      スタッフ情報参照<br />
+      <br />
+      スタッフコード<br />
+      <?php print $staff_code; ?>
+      <br />
+      スタッフ名<br />
+      <?php print $staff_name; ?>
+      <br />
+      <br />
+      <input type="button" onclick="history.back()" value="戻る">
+    </form>
 
   </body>
 </html>
