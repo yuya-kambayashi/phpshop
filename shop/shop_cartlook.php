@@ -27,6 +27,7 @@
     try{
 
       $cart = $_SESSION['cart'];
+      $max = count($cart);
 
       $dns = 'mysql:dbname=shop;host=localhost;charset=utf8';
       $user = 'root';
@@ -34,25 +35,25 @@
       $dbh = new PDO($dns, $user, $password);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      $sql = 'SELECT name, price, gazou FROM mst_product where code=?';
-      $stmt = $dbh->prepare($sql);
-      $data[]=$pro_code;
-      $stmt->execute($data);
+      foreach($cart as $key => $val){
+        $sql = 'SELECT code, name, price, gazou FROM mst_product WHERE code = ?';
+        $stmt = $dbh->prepare($sql);
+        $data[0] = $val;
+        $stmt->execute($data);
 
-      $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-      $pro_name=$rec['name'];
-      $pro_price=$rec['price'];
-      $pro_gazou_name=$rec['gazou'];
+        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $pro_name[] = $rec['name'];
+        $pro_price[] = $rec['price'];
+        if ($rec['gazou'] == ''){
+          $pro_gazou[] = '';
+        }
+        else{
+          $pro_gazou[]='<img src = "../product/gazou/'.$rec['gazou'].'">';
+        }
+      }
 
       $dbh = null;
-
-      if ($pro_gazou_name==''){
-          $disp_gazou='';
-      }
-      else{
-        $disp_gazou = '<img src = "../product/gazou/'.$pro_gazou_name.'">';
-      }
-      print '<a href="shop_cartin.php?procode='.$pro_code.'">カートに入れる</a><br /><br />';
 
     }catch (Exception $e){
       print 'ただいま障害により大変ご迷惑をおかけしております。';
@@ -61,22 +62,23 @@
 
     ?>
 
-    商品情報参照<br />
+    カートの中身<br />
     <br />
-    商品コード<br />
-    <?php print $pro_code; ?>
-    <br />
-    商品名<br />
-    <?php print $pro_name; ?>
-    <br />
-    価格<br />
-    <?php print $pro_price; ?>円
-    <br />
-    <?php print $disp_gazou; ?>
-    <br />
-    <br />
-    <input type="button" onclick="history.back()" value="戻る">
-  </fomr>
+    <?php for($i=0; $i < $max; $i++){
+    ?>
+
+      <?php print $pro_name[$i]; ?>
+      <?php print $pro_gazou[$i]; ?>
+      <?php print $pro_price[$i];?>円
+      <br />
+    <?php }
+    ?>
+
+
+
+    <form>
+      <input type="button" onclick="history.back()" value="戻る">
+    </form>
 
   </body>
 </html>
