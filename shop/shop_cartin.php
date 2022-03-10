@@ -30,7 +30,7 @@
 
       if(isset($_SESSION['cart'])==true){
         $cart=$_SESSION['cart'];
-        $cart=$_SESSION['kazu'];
+        $kazu=$_SESSION['kazu'];
       }
       $cart[] = $pro_code;
       $kazu[] = 1;

@@ -27,6 +27,7 @@
     try{
 
       $cart = $_SESSION['cart'];
+      $kazu = $_SESSION['kazu'];
       $max = count($cart);
 
       $dns = 'mysql:dbname=shop;host=localhost;charset=utf8';
@@ -70,6 +71,7 @@
       <?php print $pro_name[$i]; ?>
       <?php print $pro_gazou[$i]; ?>
       <?php print $pro_price[$i];?>円
+      <?php print $kazu[$i];?>
       <br />
     <?php }
     ?>
