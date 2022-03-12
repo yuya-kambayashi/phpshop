@@ -116,6 +116,7 @@
       <input type="submit" value="数量変更"><br />
       <input type="button" onclick="history.back()" value="戻る">
     </form>
+    <a href="shop_form.html">ご購入手続きへ進む</a><br />
 
   </body>
 </html>
