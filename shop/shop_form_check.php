@@ -41,17 +41,12 @@
     }
     else {
       print '郵便番号<br />';
-      print $postal1;
+      print $postal1."-".$postal2;
       print '<br /><br />';
     }
     
     if(preg_match('/\A[0-9]+\z/', $postal2) == 0){
       print '郵便番号は半角数字で入力してください<br /><br />';
-    }
-    else {
-      print '郵便番号<br />';
-      print $postal2;
-      print '<br /><br />';
     }
 
     if($address == ''){
