@@ -75,6 +75,8 @@
         $honbun.="-------------\n";
         $honbun.="\n";
 
+        print '<br />';
+        print $honbun;
 
       }catch (Exception $e){
         print 'ただいま障害により大変ご迷惑をおかけしております。';
