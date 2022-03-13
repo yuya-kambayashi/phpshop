@@ -72,11 +72,11 @@
         $dbh = null;
 
         $honbun.="送料は無料です。\n";
-        $honbun.="-------------\n";
+        $honbun.="---------------------\n";
         $honbun.="\n";
 
         print '<br />';
-        print $honbun;
+        print nl2br($honbun);
 
       }catch (Exception $e){
         print 'ただいま障害により大変ご迷惑をおかけしております。';
