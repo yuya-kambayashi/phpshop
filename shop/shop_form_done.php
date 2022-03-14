@@ -28,7 +28,6 @@
         $danjo = $post['danjo'];
         $birth = $post['birth'];
         
-
         print $onamae.'様<br />';
         print 'ご注文ありがとうございました。<br />';
         print $email.'にメールをお送りしましたのでご確認ください。<br />';
@@ -60,38 +59,6 @@
           $data[0]=$cart[$i];
           $stmt->execute($data);
 
-          // $lastmembercode=0;
-
-          // if($chumon=='chumontouroku'){
-
-          //   $sql = 'INSERT INTO dat_member(password, name, email, postal1, postal2, address, tel, danjo, born) VALUES(?,?,?,?,?,?,?,?,?)';
-          //   $stmt= $dbh->prepare($sql);
-          //   $data = array();
-          //   $data[] = md5($pass);
-          //   $data[] = $onamae;
-          //   $data[] = $email;
-          //   $data[] = $postal1;
-          //   $data[] = $postal2;
-          //   $data[] = $address;
-          //   $data[] = $tel;
-          //   if ( $danjo == 'dan'){
-          //     $data[] = 1;
-          //   }
-          //   elseif ($danjo=='jo'){
-          //     $data[] = 2;
-          //   }
-          //   elseif ($danjo=='sonota'){
-          //     $data[] = 3;
-          //   }
-          //   elseif ($danjo=='noanswer'){
-          //     $data[] = 4;
-          //   }
-          //   $data[] = $birth;
-          //   $stmt->execute($data);
-          //   $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-          //   $lastmembercode = $rec['LAST_INSERT_ID()'];
-          // }
-
           $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
           $name = $rec['name'];
@@ -107,14 +74,51 @@
 
         }
 
-        $sql = 'LOCK TABLES dat_sales WRITE, dat_sales_product WRITE';
+        $sql = 'LOCK TABLES dat_sales WRITE, dat_sales_product WRITE, dat_member WRITE';
         $stmt = $dbh->prepare($sql);
         $stmt->execute($data);
+
+        $lastmembercode=0;
+
+        if($chumon=='chumontouroku'){
+
+          $sql = 'INSERT INTO dat_member(password, name, email, postal1, postal2, address, tel, danjo, born) VALUES(?,?,?,?,?,?,?,?,?)';
+          $stmt= $dbh->prepare($sql);
+          $data = array();
+          $data[] = md5($pass);
+          $data[] = $onamae;
+          $data[] = $email;
+          $data[] = $postal1;
+          $data[] = $postal2;
+          $data[] = $address;
+          $data[] = $tel;
+          if ( $danjo == 'dan'){
+            $data[] = 1;
+          }
+          elseif ($danjo=='jo'){
+            $data[] = 2;
+          }
+          elseif ($danjo=='sonota'){
+            $data[] = 3;
+          }
+          elseif ($danjo=='noanswer'){
+            $data[] = 4;
+          }
+          $data[] = $birth;
+          $stmt->execute($data);
+
+          $sql = 'SELECT LAST_INSERT_ID()';
+          $stmt = $dbh->prepare($sql);
+          $stmt->execute();
+
+          $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+          $lastmembercode = $rec['LAST_INSERT_ID()'];
+        }
 
         $sql = 'INSERT INTO dat_sales( code_member, name, email, postal1, postal2, address, tel) VALUES (?,?,?,?,?,?,?) ';
         $stmt = $dbh->prepare($sql);
         $data = array();
-        $data[] = 0;
+        $data[] = $lastmembercode;
         $data[] = $onamae;
         $data[] = $email;
         $data[] = $postal1;
@@ -152,15 +156,15 @@
         $honbun.="---------------------\n";
         $honbun.="\n";
 
-        // print '<br />';
-        // print nl2br($honbun);
+        print '<br />';
+        print nl2br($honbun);
 
         $title ='ご注文ありがとうございます。';
         $header = 'From:info@aaa.co.jp';
         $honbun = html_entity_decode($honbun, ENT_QUOTES, 'UTF-8');
         mb_language('Japanese');
         mb_internal_encoding('UTF-8');
-        mb_send_mail($email, $title, $honbun, $header);
+        // mb_send_mail($email, $title, $honbun, $header);
 
       }catch (Exception $e){
         print 'ただいま障害により大変ご迷惑をおかけしております。';

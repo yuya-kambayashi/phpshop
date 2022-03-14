@@ -81,6 +81,7 @@
     }
 
     if($chumon == 'chumontouroku'){
+
       if($pass==""){
         print 'パスワードが入力されていません。<br /><br />';
         $okflg = false;
@@ -91,7 +92,7 @@
         $okflg = false;
       }
 
-      if($pass==$pass2){
+      if($pass!=$pass2){
         print 'パスワードが一致しません。<br /><br />';
         $okflg = false;
       }
@@ -116,8 +117,6 @@
       print $birth.'年代';
 
       print '<br /><br />';
-
-
     }
 
 
