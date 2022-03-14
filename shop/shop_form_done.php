@@ -152,6 +152,13 @@
 
         $dbh = null;
 
+        if($chumon == 'chumontouroku'){
+          print '会員登録が完了いたしました。<br />';
+          print '次回からメールアドレスとパスワードでログインしてください。<br />';
+          print 'ご注文が簡単にできるようになります。<br />';
+          print '<br />';
+        }
+
         $honbun.="送料は無料です。\n";
         $honbun.="---------------------\n";
         $honbun.="\n";
