@@ -27,10 +27,10 @@
       $pro_code=$_POST['code'];
       $pro_gazou_name=$_POST['gazou_name'];
 
-      $dns = 'mysql:dbname=shop;host=localhost;charset=utf8';
+      $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
       $user = 'root';
       $password = '';
-      $dbh = new PDO($dns, $user, $password);
+      $dbh = new PDO($dsn, $user, $password);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       $sql = 'DELETE FROM mst_product where code=?';

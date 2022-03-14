@@ -32,10 +32,10 @@
       $staff_name=$post['name'];
       $staff_pass=$post['pass'];
 
-      $dns = 'mysql:dbname=shop;host=localhost;charset=utf8';
+      $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
       $user = 'root';
       $password = '';
-      $dbh = new PDO($dns, $user, $password);
+      $dbh = new PDO($dsn, $user, $password);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       $sql = 'UPDATE mst_staff SET name=?, password=? where code=?';
