@@ -33,7 +33,7 @@
         else{
 
             session_start();
-            $_SESSION['member_email']=1;
+            $_SESSION['member_login']=1;
             $_SESSION['member_code']=$rec['code'];
             $_SESSION['member_name']=$rec['name'];
 
