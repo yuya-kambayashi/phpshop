@@ -18,7 +18,7 @@
 
   ログアウトしました。<br />
   <br />
-  <a href="shop_list.php">ログイン画面へ</a>
+  <a href="shop_list.php">商品一覧へ</a>
 
   </body>
 </html>
