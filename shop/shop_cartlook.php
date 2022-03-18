@@ -120,7 +120,7 @@
 
     <?php
       if(isset($_SESSION["member_login"]) == true){
-        print '<a href="shop_kantan_check.html">会員かんたん注文へ進む</a><br />';
+        print '<a href="shop_kantan_check.php">会員かんたん注文へ進む</a><br />';
       }
     ?>
 
