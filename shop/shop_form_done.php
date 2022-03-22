@@ -178,6 +178,10 @@
         exit();
       }
 
+      
+      // カートを空にします
+      session_destroy();
+
     ?>
 
   <br />
