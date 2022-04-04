@@ -61,8 +61,9 @@
     print '<br />';
     print '<a href="shop_cartlook.php">カートを見る</a><br />';
 
+    print '<br />';
+    print '<a href="../staff_login/staff_login.html">スタッフログイン</a><br />';
     ?>
 
-    
   </body>
 </html>
