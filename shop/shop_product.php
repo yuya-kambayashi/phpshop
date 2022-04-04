@@ -82,6 +82,82 @@
     <br />
     <input type="button" onclick="history.back()" value="戻る">
     </form>
+    <form name="form1" action="">
+      <input id="Radio1" name="RadioGroup1" type="radio" />
+      <label for="Radio1">AXEL_cjT5K　特定アカウント　自動処理</label><br/>
+      <input id="Radio2" name="RadioGroup1" type="radio" checked/>
+      <label for="Radio2">CORP_12345　個別アカウント　自動処理</label><br />
+    </form>
+  	<button id="linkToCPQ" type="button" onclick="linkToCPQ()">CPQ連携</button>
+    <br />
+    <br />
+    
+    <?php
+
+      require_once('../common/encrypt.php');
+
+      // Usage:
+      $data = array(
+        'web_id' 		=> '01234569',
+        'company_name' 	=> '海山商事',
+        'division_name'	=> '営業部',
+        'member_name' 	=> 'フグ田マスオ'
+      );
+
+      // jsonに変換
+      $json_data = json_encode( $data );
+      print "json_data: " . $json_data . "<br>";
+
+      $str = $json_data;
+      print "Plain text: " . $str . "<br>";
+
+      // 暗号化用事前共有鍵（8桁のランダム文字列）
+      // !!!!!10桁ではなく、8桁!!!!!!!!!!!!!!!
+      $password = "Tu31J7F1";
+      print "Password: " . $password . "<br>";
+
+      // 暗号化処理
+      $encrypted = encrypt($str, $password);
+      print "encrypted：" . $encrypted . "<br>";
+
+      $rawurlencode = rawurlencode($encrypted);
+      print "rawurlencode:" . $rawurlencode . "<br>";
+
+      // 復号処理
+      $decrypted = decrypt($encrypted, $password);
+      print "decrypted：" . $decrypted . "<br>";
+
+      // 連携用認証コード（10桁のランダム文字列）
+
+
+      //$auth = "AXEL_cjT5K";
+      //$auth = "CORP_12345";
+      // $url = "http://localhost:3000/#/index-from-AXEL.html" ."?s=" .$auth. "&m=" . $rawurlencode;
+      //$url = "http://localhost:3000/#/index.html" ."?s=" .$auth. "&m=" . $rawurlencode;
+      //print "url:" . $url . "<br>";
+
+    ?>
+    <script language="JavaScript"  type="text/javascript">
+
+      function linkToCPQ(){
+        
+        // 連携用URLの生成
+        var key=document.getElementById('Radio1').checked ? 'AXEL_cjT5K' : 'CORP_12345';					
+        
+        //const baseURL = "http://localhost:3000/#/index-from-AXEL.html";
+        const baseURL = "http://localhost:3000/#/index.html";
+
+        var rawurlencode = '<?php echo $rawurlencode; ?>';
+
+        var targetURL = baseURL + "?s=" + key + "&m=" + rawurlencode;
+        console.log(targetURL);
+
+        // CPQへの遷移
+        window.open(targetURL, '_blank'); 
+      }
+
+    </script>
+    
 
   </body>
 </html>
