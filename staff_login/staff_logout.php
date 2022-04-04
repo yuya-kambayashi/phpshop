@@ -15,10 +15,10 @@
     <title>ろくまる農園</title>
   </head>
   <body>
-
-  ログアウトしました。<br />
-  <br />
-  <a href="../staff_login/staff_login.html">ログイン画面へ</a>
+    <a href="../../index.php"><img src = "../../icon.png"></a><br /><br />
+    ログアウトしました。<br />
+    <br />
+    <a href="../staff_login/staff_login.html">ログイン画面へ</a>
 
   </body>
 </html>
