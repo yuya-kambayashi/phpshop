@@ -56,6 +56,7 @@
         $disp_gazou = '<img src = "../product/gazou/'.$pro_gazou_name.'">';
       }
       print '<a href="shop_cartin.php?procode='.$pro_code.'">カートに入れる</a><br /><br />';
+      print '<a href="shop_product_customize.php">カスタマイズ</a><br /><br />';
 
     }catch (Exception $e){
       print 'ただいま障害により大変ご迷惑をおかけしております。';
