@@ -28,7 +28,7 @@
 
       $pro_name=$post['name'];
       $pro_price=$post['price'];
-      $pro_gazou=$post['gazou'];
+      $pro_gazou=$_FILES['gazou'];
 
       if($pro_name==''){
           print '商品名が入力されていません。<br />';
