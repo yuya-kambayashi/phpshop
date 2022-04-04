@@ -1,6 +1,9 @@
-<?php
+<?php  
   session_start();
   session_regenerate_id(true);
+
+  print '<a href="../../index.php"><img src = "../../icon.png"></a><br /><br />';
+
   if(isset($_SESSION['member_login'])==false){
     print 'ようこそゲスト様　';
     print '<a href="member_login.html">会員ログイン</a><br />';
