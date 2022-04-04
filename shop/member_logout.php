@@ -15,10 +15,11 @@
     <title>ろくまる農園</title>
   </head>
   <body>
+    <a href="../../index.php"><img src = "../../icon.png"></a><br /><br />
 
-  ログアウトしました。<br />
-  <br />
-  <a href="shop_list.php">商品一覧へ</a>
+    ログアウトしました。<br />
+    <br />
+    <a href="shop_list.php">商品一覧へ</a>
 
   </body>
 </html>

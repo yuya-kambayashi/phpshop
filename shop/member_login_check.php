@@ -27,6 +27,7 @@
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($rec==false){
+            print '    <a href="../../index.php"><img src = "../../icon.png"></a><br /><br />';
             print 'メールアドレスかパスワードが間違っています。<br />';
             print '<a href="member_login.html">戻る</a>';
         }

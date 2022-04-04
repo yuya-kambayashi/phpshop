@@ -15,8 +15,9 @@
     <title>ろくまる農園</title>
   </head>
   <body>
+    <a href="../../index.php"><img src = "../../icon.png"></a><br /><br />
 
-  カートを空にしました。<br />
+    カートを空にしました。<br />
 
   </body>
 </html>

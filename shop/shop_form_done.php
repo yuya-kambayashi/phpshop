@@ -1,6 +1,8 @@
 <?php
   session_start();
   session_regenerate_id(true);
+
+  print '<a href="../../index.php"><img src = "../../icon.png"></a><br /><br />';
 ?>
 
 <!DOCTYPE html>

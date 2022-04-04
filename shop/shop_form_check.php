@@ -6,6 +6,8 @@
   </head>
   <body>
     <?php
+    
+    print '<a href="../../index.php"><img src = "../../icon.png"></a><br /><br />';
 
     require_once('../common/common.php');
 
