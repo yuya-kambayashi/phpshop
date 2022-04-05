@@ -83,15 +83,47 @@
     <input type="button" onclick="history.back()" value="戻る">
     </form>
     <form name="form1" action="">
+      認証コード（ AXEL or 自社サイト　/ 開始画面 / 選択するタイプ ）
+      <br />
       <input id="Radio1" name="RadioGroup1" type="radio" />
-      <label for="Radio1">AXEL_cjT5K　特定アカウント　自動処理</label><br/>
-      <input id="Radio2" name="RadioGroup1" type="radio" checked/>
-      <label for="Radio2">CORP_12345　個別アカウント　自動処理</label><br />
+      <label for="Radio1">AXEL_TYPE_反応装置ラボ</label><br/>
+      <input id="Radio2" name="RadioGroup1" type="radio" />
+      <label for="Radio2">AXEL_TYPE_反応ろ過装置ラボ</label><br/>
+      <input id="Radio3" name="RadioGroup1" type="radio" />
+      <label for="Radio3">AXEL_TYPE_NULL</label><br/>
+      <input id="Radio4" name="RadioGroup1" type="radio" />
+      <label for="Radio4">AXEL_STANDARD_反応装置ラボ</label><br/>
+      <input id="Radio5" name="RadioGroup1" type="radio" />
+      <label for="Radio5">AXEL_STANDARD_反応ろ過装置ラボ</label><br/>
+      <input id="Radio6" name="RadioGroup1" type="radio" />
+      <label for="Radio6">AXEL_STANDARD_NULL * error</label><br/>
+      <input id="Radio21" name="RadioGroup1" type="radio" />
+      <label for="Radio21">CORP_TYPE_反応装置ラボ</label><br/>
+      <input id="Radio22" name="RadioGroup1" type="radio" />
+      <label for="Radio22">CORP_TYPE_反応ろ過装置ラボ</label><br/>
+      <input id="Radio23" name="RadioGroup1" type="radio" />
+      <label for="Radio23">CORP_TYPE_NULL</label><br/>
+      <input id="Radio24" name="RadioGroup1" type="radio" />
+      <label for="Radio24">CORP_STANDARD_反応装置ラボ</label><br/>
+      <input id="Radio25" name="RadioGroup1" type="radio" />
+      <label for="Radio25">CORP_STANDARD_反応ろ過装置ラボ</label><br/>
+      <input id="Radio26" name="RadioGroup1" type="radio" />
+      <label for="Radio26">CORP_STANDARD_NULL * error</label><br/>
+
+
     </form>
   	<button id="linkToCPQ" type="button" onclick="linkToCPQ()">CPQ連携</button>
     <br />
     <br />
-    
+    連携用URL
+    <br />
+    <p id="URL"></p>
+    ====
+    <br />
+    <br />
+    デバッグ用データ
+    <br />
+    <br />
     <?php
 
       require_once('../common/encrypt.php');
@@ -142,7 +174,43 @@
       function linkToCPQ(){
         
         // 連携用URLの生成
-        var key=document.getElementById('Radio1').checked ? 'AXEL_cjT5K' : 'CORP_12345';					
+        var key = '';
+        if ( document.getElementById('Radio1').checked ){
+          key = 'AXEL_TYPE_1';
+        } 
+        else if (document.getElementById('Radio2').checked){
+          key = 'AXEL_TYPE_2';
+        }
+        else if (document.getElementById('Radio3').checked){
+          key = 'AXEL_TYPE_0';
+        }
+        else if ( document.getElementById('Radio4').checked ){
+          key = 'AXEL_STANDARD_1';
+        } 
+        else if (document.getElementById('Radio5').checked){
+          key = 'AXEL_STANDARD_2';
+        }
+        else if (document.getElementById('Radio6').checked){
+          key = 'AXEL_STANDARD_0';
+        }
+        else if ( document.getElementById('Radio21').checked ){
+          key = 'CORP_TYPE_1';
+        } 
+        else if (document.getElementById('Radio22').checked){
+          key = 'CORP_TYPE_2';
+        }
+        else if (document.getElementById('Radio23').checked){
+          key = 'CORP_TYPE_0';
+        }
+        else if ( document.getElementById('Radio24').checked ){
+          key = 'CORP_STANDARD_1';
+        } 
+        else if (document.getElementById('Radio25').checked){
+          key = 'CORP_STANDARD_2';
+        }
+        else if (document.getElementById('Radio26').checked){
+          key = 'CORP_STANDARD_0';
+        }
         
         //const baseURL = "http://localhost:3000/#/index-from-AXEL.html";
         const baseURL = "http://localhost:3000/#/index.html";
@@ -151,7 +219,8 @@
 
         var targetURL = baseURL + "?s=" + key + "&m=" + rawurlencode;
         console.log(targetURL);
-
+        // URLの表示
+        document.getElementById("URL").textContent = targetURL;
         // CPQへの遷移
         window.open(targetURL, '_blank'); 
       }
