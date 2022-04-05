@@ -56,7 +56,6 @@
         $disp_gazou = '<img src = "../product/gazou/'.$pro_gazou_name.'">';
       }
       print '<a href="shop_cartin.php?procode='.$pro_code.'">カートに入れる</a><br /><br />';
-      print '<a href="shop_product_customize.php">カスタマイズ</a><br /><br />';
 
     }catch (Exception $e){
       print 'ただいま障害により大変ご迷惑をおかけしております。';
@@ -82,10 +81,11 @@
     <br />
     <input type="button" onclick="history.back()" value="戻る">
     </form>
+    <hr style="border:none;border-top:dashed 3px gray;height:1px;">
     <form name="form1" action="">
       認証コード（ AXEL or 自社サイト　/ 開始画面 / 選択するタイプ ）
       <br />
-      <input id="Radio1" name="RadioGroup1" type="radio" />
+      <input id="Radio1" name="RadioGroup1" type="radio" checked/>
       <label for="Radio1">AXEL_TYPE_反応装置ラボ</label><br/>
       <input id="Radio2" name="RadioGroup1" type="radio" />
       <label for="Radio2">AXEL_TYPE_反応ろ過装置ラボ</label><br/>
@@ -114,16 +114,13 @@
     </form>
   	<button id="linkToCPQ" type="button" onclick="linkToCPQ()">CPQ連携</button>
     <br />
-    <br />
     連携用URL
     <br />
     <p id="URL"></p>
-    ====
+    <hr style="border:none;border-top:dashed 3px gray;height:1px;">
     <br />
     <br />
     デバッグ用データ
-    <br />
-    <br />
     <?php
 
       require_once('../common/encrypt.php');
