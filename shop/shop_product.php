@@ -109,8 +109,6 @@
       <label for="Radio25">CORP_STANDARD_反応ろ過装置ラボ</label><br/>
       <input id="Radio26" name="RadioGroup1" type="radio" />
       <label for="Radio26">CORP_STANDARD_NULL * error</label><br/>
-
-
     </form>
   	<button id="linkToCPQ" type="button" onclick="linkToCPQ()">CPQ連携</button>
     <br />
@@ -223,7 +221,5 @@
       }
 
     </script>
-    
-
   </body>
 </html>
