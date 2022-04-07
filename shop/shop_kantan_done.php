@@ -146,7 +146,7 @@
     ?>
 
   <br />
-  <a href = "shop_list.php">商品画面へ</a>
+  <a href = "shop_list.php">商品一覧へ</a>
 
   </body>
 </html>
