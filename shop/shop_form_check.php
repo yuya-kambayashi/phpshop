@@ -42,9 +42,32 @@
       $okflg = false;
     }
     else {
-      print 'メールアドレス<br />';
-      print $email;
-      print '<br /><br />';
+
+      $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
+      $user = 'root';
+      $password = '';
+      $dbh = new PDO($dsn, $user, $password);
+      $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+      $sql = 'SELECT name FROM dat_member where email=? LIMIT 1';
+      $stmt = $dbh->prepare($sql);
+      $data[] = $email;
+      $stmt->execute($data);
+
+      $dbh = null;
+
+
+      $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if ($rec['name'] != ''){
+        print 'メールアドレスが重複しています<br /><br />';
+        $okflg = false;
+      }
+      else {
+        print 'メールアドレス<br />';
+        print $email;
+        print '<br /><br />';
+      }
     }
     
     if(preg_match('/\A[0-9]+\z/', $postal1) == 0){
