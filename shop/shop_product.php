@@ -124,15 +124,19 @@
       require_once('../common/encrypt.php');
 
       // Usage:
-      $data = array(
+      $raw_data = array(
         'web_id' 		=> '01234569',
         'company_name' 	=> '海山商事',
         'division_name'	=> '営業部',
         'member_name' 	=> 'フグ田マスオ'
       );
 
+      print "raw_data: ";
+      print_r($raw_data);
+      print "<br>";
+
       // jsonに変換
-      $json_data = json_encode( $data );
+      $json_data = json_encode( $raw_data );
       print "json_data: " . $json_data . "<br>";
 
       $str = $json_data;
