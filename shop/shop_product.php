@@ -117,18 +117,55 @@
     <p id="URL"></p>
     <hr style="border:none;border-top:dashed 3px gray;height:1px;">
     <br />
-    <br />
     デバッグ用データ
+    <br />
+    <br />
     <?php
 
-      require_once('../common/encrypt.php');
+      $web_id = '';
+      $company_name = '';
+      $division_name = '';
+      $member_name = '';
 
+      if(isset($_SESSION['member_login'])==true){
+
+        try{
+
+          $code= $_SESSION['member_code'];
+
+          $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
+          $user = 'root';
+          $password = '';
+          $dbh = new PDO($dsn, $user, $password);
+          $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $sql = 'SELECT name, web_id, company_name, division_name FROM dat_member WHERE code = ?';
+          $stmt = $dbh->prepare($sql);
+          $data[0] = $code;
+          $stmt->execute($data);
+          $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
+          $dbh = null;
+
+          $web_id = $rec['web_id'];
+          $company_name = $rec['company_name'];
+          $division_name = $rec['division_name'];
+          $member_name = $rec['name'];
+
+        }catch (Exception $e){
+          print 'ただいま障害により大変ご迷惑をおかけしております。';
+          exit();
+        }
+      }
+
+      require_once('../common/encrypt.php');
+      
       // Usage:
       $raw_data = array(
-        'web_id' 		=> '01234569',
-        'company_name' 	=> '海山商事',
-        'division_name'	=> '営業部',
-        'member_name' 	=> 'フグ田マスオ'
+        'web_id' 		=> $web_id,
+        'company_name' 	=> $company_name,
+        'division_name'	=> $division_name,
+        'member_name' 	=> $member_name
       );
 
       print "raw_data: ";
