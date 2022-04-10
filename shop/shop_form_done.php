@@ -21,6 +21,8 @@
 
         $onamae = $post['onamae'];
         $email = $post['email'];
+        $company_name = $post['company_name'];
+        $division_name = $post['division_name'];
         $postal1 = $post['postal1'];
         $postal2 = $post['postal2'];
         $address = $post['address'];
@@ -84,7 +86,7 @@
 
         if($chumon=='chumontouroku'){
 
-          $sql = 'INSERT INTO dat_member(password, name, email, postal1, postal2, address, tel, danjo, born) VALUES(?,?,?,?,?,?,?,?,?)';
+          $sql = 'INSERT INTO dat_member(password, name, email, postal1, postal2, address, tel, danjo, born, web_id, company_name, division_name ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)';
           $stmt= $dbh->prepare($sql);
           $data = array();
           $data[] = md5($pass);
@@ -107,6 +109,10 @@
             $data[] = 4;
           }
           $data[] = $birth;
+          $data[] = '01234567';
+          $data[] = $company_name;
+          $data[] = $division_name;
+
           $stmt->execute($data);
 
           $sql = 'SELECT LAST_INSERT_ID()';
