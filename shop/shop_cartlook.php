@@ -120,11 +120,14 @@
       <input type="submit" value="数量変更"><br /><br />
       <input type="button" onclick="history.back()" value="戻る">
     </form>
-    <a href="shop_form.html">ご購入手続きへ進む</a><br />
 
     <?php
-      if(isset($_SESSION["member_login"]) == true){
-        print '<a href="shop_kantan_check.php">会員かんたん注文へ進む</a><br />';
+      if(isset($_SESSION['member_login'])==false){
+
+        print '<a href="shop_form.html">レジに進む</a><br />';
+      }
+      else{
+        print '<a href="shop_kantan_check.php">レジに進む</a><br />';
       }
     ?>
 

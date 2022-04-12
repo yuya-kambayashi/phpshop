@@ -56,6 +56,19 @@
 
     カートに追加しました。<br />
     <br />
+    <?php
+      if(isset($_SESSION['member_login'])==false){
+
+        print '<a href="shop_form.html">レジに進む</a><br />';
+      }
+      else{
+        print '<a href="shop_kantan_check.php">レジに進む</a><br />';
+      }
+    ?>
+    <br />
+    <a href="shop_cartlook.php">カートに移動</a>
+    <br />
+    <br />
     <a href = "shop_list.php">商品一覧に戻る</a>
   </body>
 </html>
