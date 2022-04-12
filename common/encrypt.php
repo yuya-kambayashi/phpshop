@@ -1,5 +1,8 @@
 <?php
 
+	// 以下を参考に実装
+	// https://qiita.com/kazuhidet/items/509bee2c3a109ff6ea61
+
 	function encrypt($plain_text, $password) {
 		// ランダムな8バイトのSaltを生成
 		$random_salt = openssl_random_pseudo_bytes(8);
