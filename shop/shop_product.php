@@ -110,7 +110,16 @@
       <input id="Radio26" name="RadioGroup1" type="radio" />
       <label for="Radio26">CORP_STANDARD_NULL * error</label><br/>
     </form>
-  	<button id="linkToCPQ" type="button" onclick="linkToCPQ()">CPQ連携</button>
+    <?php
+      if ( isset($_SESSION['member_login']) == true ){
+        print '<button id="linkToCPQ" type="button" onclick="linkToCPQ()">CPQ連携</button>';
+      }
+      else {
+        print '※ CPQ連携には会員ログインが必要です<br>';
+        print '<button id="linkToCPQ" type="button" onclick="linkToCPQ()" disabled=true>CPQ連携</button>';
+      }
+    ?>
+    <br />
     <br />
     連携用URL
     <br />
