@@ -82,7 +82,7 @@
         $stmt = $dbh->prepare($sql);
         $stmt->execute($data);
 
-        $lastmembercode=0;
+        $lastmemberid=0;
 
         if($chumon=='chumontouroku'){
 
@@ -120,13 +120,13 @@
           $stmt->execute();
 
           $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-          $lastmembercode = $rec['LAST_INSERT_ID()'];
+          $lastmemberid = $rec['LAST_INSERT_ID()'];
         }
 
-        $sql = 'INSERT INTO dat_sales( code_member, name, email, postal1, postal2, address, tel) VALUES (?,?,?,?,?,?,?) ';
+        $sql = 'INSERT INTO dat_sales( id_member, name, email, postal1, postal2, address, tel) VALUES (?,?,?,?,?,?,?) ';
         $stmt = $dbh->prepare($sql);
         $data = array();
-        $data[] = $lastmembercode;
+        $data[] = $lastmemberid;
         $data[] = $onamae;
         $data[] = $email;
         $data[] = $postal1;

@@ -16,7 +16,7 @@
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = 'SELECT code, name FROM dat_member where email = ? AND password = ?';
+        $sql = 'SELECT id, name FROM dat_member where email = ? AND password = ?';
         $stmt = $dbh->prepare($sql);
         $data[]=$member_email;
         $data[]=$member_pass;
@@ -35,7 +35,7 @@
 
             session_start();
             $_SESSION['member_login']=1;
-            $_SESSION['member_code']=$rec['code'];
+            $_SESSION['member_id']=$rec['id'];
             $_SESSION['member_name']=$rec['name'];
 
             header('Location: shop_list.php');

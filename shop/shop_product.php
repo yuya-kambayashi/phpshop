@@ -140,7 +140,7 @@
 
         try{
 
-          $code= $_SESSION['member_code'];
+          $member_id= $_SESSION['member_id'];
 
           $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
           $user = 'root';
@@ -148,9 +148,9 @@
           $dbh = new PDO($dsn, $user, $password);
           $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          $sql = 'SELECT name, web_id, company_name, division_name FROM dat_member WHERE code = ?';
+          $sql = 'SELECT name, web_id, company_name, division_name FROM dat_member WHERE id = ?';
           $stmt = $dbh->prepare($sql);
-          $data[0] = $code;
+          $data[0] = $member_id;
           $stmt->execute($data);
           $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 

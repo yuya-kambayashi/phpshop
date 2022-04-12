@@ -82,12 +82,12 @@
         $stmt = $dbh->prepare($sql);
         $stmt->execute($data);
 
-        $lastmembercode=$_SESSION['member_code'];
+        $lastmemberid=$_SESSION['member_id'];
 
-        $sql = 'INSERT INTO dat_sales( code_member, name, email, postal1, postal2, address, tel) VALUES (?,?,?,?,?,?,?) ';
+        $sql = 'INSERT INTO dat_sales( id_member, name, email, postal1, postal2, address, tel) VALUES (?,?,?,?,?,?,?) ';
         $stmt = $dbh->prepare($sql);
         $data = array();
-        $data[] = $lastmembercode;
+        $data[] = $lastmemberid;
         $data[] = $onamae;
         $data[] = $email;
         $data[] = $postal1;
