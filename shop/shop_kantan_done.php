@@ -84,7 +84,7 @@
 
         $lastmemberid=$_SESSION['member_id'];
 
-        $sql = 'INSERT INTO dat_sales( id_member, member_name, email, postal1, postal2, address, tel) VALUES (?,?,?,?,?,?,?) ';
+        $sql = 'INSERT INTO dat_sales( id_member, name, email, postal1, postal2, address, tel) VALUES (?,?,?,?,?,?,?) ';
         $stmt = $dbh->prepare($sql);
         $data = array();
         $data[] = $lastmemberid;
