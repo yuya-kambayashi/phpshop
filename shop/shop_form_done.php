@@ -84,7 +84,7 @@
 
         if($chumon=='chumontouroku'){
 
-          $sql = 'INSERT INTO dat_member(password, member_name, email, postal1, postal2, address, tel, web_id, company_name, division_name ) VALUES(?,?,?,?,?,?,?,?,?,?)';
+          $sql = 'INSERT INTO dat_member(password, member_name, email, postal1, postal2, address, tel, company_name, division_name ) VALUES(?,?,?,?,?,?,?,?,?)';
           $stmt= $dbh->prepare($sql);
           $data = array();
           $data[] = md5($pass);
@@ -94,7 +94,6 @@
           $data[] = $postal2;
           $data[] = $address;
           $data[] = $tel;
-          $data[] = '01234567';
           $data[] = $company_name;
           $data[] = $division_name;
 
@@ -106,6 +105,16 @@
 
           $rec = $stmt->fetch(PDO::FETCH_ASSOC);
           $lastmemberid = $rec['LAST_INSERT_ID()'];
+
+          $web_id = sprintf( '%08d', $lastmemberid);
+
+          $sql = 'UPDATE dat_member SET web_id=? WHERE id=?';
+          $stmt= $dbh->prepare($sql);
+          $data = array();
+          $data[] = $web_id;
+          $data[] = $lastmemberid;
+          $stmt->execute($data);
+
         }
 
         $sql = 'INSERT INTO dat_sales( id_member, name, email, postal1, postal2, address, tel) VALUES (?,?,?,?,?,?,?) ';
