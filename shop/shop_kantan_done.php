@@ -78,7 +78,7 @@
 
         }
 
-        $sql = 'LOCK TABLES dat_sales WRITE, dat_sales_product WRITE, dat_member WRITE';
+        $sql = 'LOCK TABLES dat_sales WRITE, dat_sales_product WRITE';
         $stmt = $dbh->prepare($sql);
         $stmt->execute($data);
 
