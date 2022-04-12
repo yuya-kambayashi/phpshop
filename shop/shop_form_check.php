@@ -51,7 +51,7 @@
       $dbh = new PDO($dsn, $user, $password);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-      $sql = 'SELECT name FROM dat_member where email=? LIMIT 1';
+      $sql = 'SELECT member_name FROM dat_member where email=? LIMIT 1';
       $stmt = $dbh->prepare($sql);
       $data[] = $email;
       $stmt->execute($data);
@@ -61,7 +61,7 @@
 
       $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
-      if ($rec['name'] != ''){
+      if ($rec['member_name'] != ''){
         print 'メールアドレスが重複しています<br /><br />';
         $okflg = false;
       }

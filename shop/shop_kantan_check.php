@@ -28,7 +28,7 @@
       $dbh = new PDO($dsn, $user, $password);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      $sql = 'SELECT name, email, postal1, postal2, address, tel FROM dat_member WHERE id = ?';
+      $sql = 'SELECT member_name, email, postal1, postal2, address, tel FROM dat_member WHERE id = ?';
       $stmt = $dbh->prepare($sql);
       $data[0] = $member_id;
       $stmt->execute($data);
@@ -36,7 +36,7 @@
 
       $dbh = null;
 
-      $onamae = $rec['name'];
+      $onamae = $rec['member_name'];
       $email = $rec['email'];
       $postal1 = $rec['postal1'];
       $postal2 = $rec['postal2'];

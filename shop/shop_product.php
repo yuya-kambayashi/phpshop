@@ -148,7 +148,7 @@
           $dbh = new PDO($dsn, $user, $password);
           $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          $sql = 'SELECT name, web_id, company_name, division_name FROM dat_member WHERE id = ?';
+          $sql = 'SELECT member_name, web_id, company_name, division_name FROM dat_member WHERE id = ?';
           $stmt = $dbh->prepare($sql);
           $data[0] = $member_id;
           $stmt->execute($data);
@@ -159,7 +159,7 @@
           $web_id = $rec['web_id'];
           $company_name = $rec['company_name'];
           $division_name = $rec['division_name'];
-          $member_name = $rec['name'];
+          $member_name = $rec['member_name'];
 
         }catch (Exception $e){
           print 'ただいま障害により大変ご迷惑をおかけしております。';
