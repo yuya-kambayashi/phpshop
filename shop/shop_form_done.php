@@ -29,8 +29,6 @@
         $tel = $post['tel'];
         $chumon = $post['chumon'];
         $pass = $post['pass'];
-        $danjo = $post['danjo'];
-        $birth = $post['birth'];
         
         print $onamae.'様<br />';
         print 'ご注文ありがとうございました。<br />';
@@ -86,7 +84,7 @@
 
         if($chumon=='chumontouroku'){
 
-          $sql = 'INSERT INTO dat_member(password, member_name, email, postal1, postal2, address, tel, danjo, born, web_id, company_name, division_name ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)';
+          $sql = 'INSERT INTO dat_member(password, member_name, email, postal1, postal2, address, tel, web_id, company_name, division_name ) VALUES(?,?,?,?,?,?,?,?,?,?)';
           $stmt= $dbh->prepare($sql);
           $data = array();
           $data[] = md5($pass);
@@ -96,19 +94,6 @@
           $data[] = $postal2;
           $data[] = $address;
           $data[] = $tel;
-          if ( $danjo == 'dan'){
-            $data[] = 1;
-          }
-          elseif ($danjo=='jo'){
-            $data[] = 2;
-          }
-          elseif ($danjo=='sonota'){
-            $data[] = 3;
-          }
-          elseif ($danjo=='noanswer'){
-            $data[] = 4;
-          }
-          $data[] = $birth;
           $data[] = '01234567';
           $data[] = $company_name;
           $data[] = $division_name;
