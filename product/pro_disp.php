@@ -32,7 +32,7 @@
       $dbh = new PDO($dsn, $user, $password);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      $sql = 'SELECT name, price, gazou FROM mst_product where code=?';
+      $sql = 'SELECT * FROM mst_product where code=?';
       $stmt = $dbh->prepare($sql);
       $data[]=$pro_code;
       $stmt->execute($data);
@@ -41,6 +41,13 @@
       $pro_name=$rec['name'];
       $pro_price=$rec['price'];
       $pro_gazou_name=$rec['gazou'];
+      $pro_model_number=$rec['model_number'];
+      $pro_category=$rec['category'];
+      $pro_carton=$rec['carton'];
+      $pro_price_web=$rec['price_web'];
+      $pro_stock=$rec['stock'];
+      $pro_specification=$rec['specification'];
+      $pro_feature=$rec['feature'];
 
       $dbh = null;
 
@@ -61,17 +68,46 @@
   <form>
     商品情報参照<br />
     <br />
+    <br />
     商品コード<br />
     <?php print $pro_code; ?>
+    <br />
     <br />
     商品名<br />
     <?php print $pro_name; ?>
     <br />
-    型番<br />
-    <?php print $pro_name; ?>
     <br />
-    価格<br />
+    型番<br />
+    <?php print $pro_model_number; ?>
+    <br />
+    <br />
+    商品区分<br />
+    <?php print $pro_category; ?>
+    <br />
+    <br />
+    入り数<br />
+    <?php print $pro_carton; ?>個
+    <br />
+    <br />
+    標準価格<br />
     <?php print $pro_price; ?>円
+    <br />
+    <br />
+    Web価格<br />
+    <?php print $pro_price_web; ?>円
+    <br />
+    <br />
+    在庫<br />
+    <?php print $pro_stock; ?>個
+    <br />    
+    <br />    
+    仕様<br />
+    <?php print $pro_specification; ?>
+    <br />    
+    <br />    
+    特徴<br />
+    <?php print $pro_feature; ?>
+    <br />
     <br />
     <?php print $disp_gazou; ?>
     <br />
