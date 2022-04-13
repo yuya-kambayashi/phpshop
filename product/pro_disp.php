@@ -67,6 +67,9 @@
     商品名<br />
     <?php print $pro_name; ?>
     <br />
+    型番<br />
+    <?php print $pro_name; ?>
+    <br />
     価格<br />
     <?php print $pro_price; ?>円
     <br />

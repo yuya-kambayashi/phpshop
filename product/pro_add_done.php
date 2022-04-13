@@ -29,7 +29,14 @@
       $post=sanitize($_POST);
 
       $pro_name=$post['name'];
+      $pro_model_number=$post['model_number'];
+      $pro_category=$post['category'];
+      $pro_carton=$post['carton'];
       $pro_price=$post['price'];
+      $pro_price_web=$post['price_web'];
+      $pro_stock=$post['stock'];
+      $pro_specification=$post['specification'];
+      $pro_feature=$post['feature'];
       $pro_gazou_name=$post['gazou_name'];
 
       $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
@@ -38,11 +45,18 @@
       $dbh = new PDO($dsn, $user, $password);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      $sql = 'INSERT INTO mst_product(name, price, gazou) VALUES (?,?,?)';
+      $sql = 'INSERT INTO mst_product(name, price, gazou, model_number, category, carton, price_web, stock, specification, feature) VALUES (?,?,?,?,?,?,?,?,?,?)';
       $stmt = $dbh->prepare($sql);
       $data[] = $pro_name;
       $data[] = $pro_price;
       $data[] = $pro_gazou_name;
+      $data[] = $pro_model_number;
+      $data[] = $pro_category;
+      $data[] = $pro_carton;
+      $data[] = $pro_price_web;
+      $data[] = $pro_stock;
+      $data[] = $pro_specification;
+      $data[] = $pro_feature;
       $stmt->execute($data);
 
       $dbh = null;
