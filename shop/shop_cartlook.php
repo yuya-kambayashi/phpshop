@@ -52,7 +52,7 @@
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       foreach($cart as $key => $val){
-        $sql = 'SELECT code, name, price, gazou FROM mst_product WHERE code = ?';
+        $sql = 'SELECT * FROM mst_product WHERE code = ?';
         $stmt = $dbh->prepare($sql);
         $data[0] = $val;
         $stmt->execute($data);
@@ -61,6 +61,12 @@
 
         $pro_name[] = $rec['name'];
         $pro_price[] = $rec['price'];
+        $pro_gazou_name[] = $rec['gazou'];
+        $pro_model_number[] = $rec['model_number'];
+        $pro_category[] = $rec['category'];
+        $pro_carton[] = $rec['carton'];
+        $pro_price_web[] = $rec['price_web'];
+        $pro_stock[] = $rec['stock'];
         if ($rec['gazou'] == ''){
           $pro_gazou[] = '';
         }
@@ -83,9 +89,14 @@
     <form method="post" action="kazu_change.php">
       <table border="1">
         <tr>
-          <td>商品</td>
-          <td>商品画像</td>
-          <td>価格</td>
+          <td>画像</td>
+          <td>商品名</td>
+          <td>型番</td>
+          <td>商品区分</td>
+          <td>入り数</td>
+          <td>標準価格</td>
+          <td>Web価格</td>
+          <td>在庫</td>
           <td>数量</td>
           <td>小計</td>
           <td>削除</td>
@@ -94,19 +105,34 @@
       ?>
         <tr>
           <td>
-            <?php print $pro_name[$i]; ?>
-          </td>
-          <td>
             <?php print $pro_gazou[$i]; ?>
           </td>
           <td>
-            <?php print $pro_price[$i];?>円
+            <?php print $pro_name[$i]; ?>
+          </td>
+          <td>
+            <?php print $pro_model_number[$i]; ?>
+          </td>
+          <td>
+            <?php print $pro_category[$i]; ?>
+          </td>
+          <td>
+            <?php print $pro_carton[$i]; ?>個
+          </td>
+          <td>
+            <?php print $pro_price[$i]; ?>円
+          </td>
+          <td>
+            <?php print $pro_price_web[$i]; ?>円
+          </td>        
+          <td>
+            <?php print $pro_stock[$i];?>個
           </td>
           <td>
             <input type="text" name="kazu<?php print $i;?>" value="<?php print $kazu[$i];?>">
           </td>
           <td>
-            <?php print $pro_price[$i] * $kazu[$i];?>円
+            <?php print $pro_price_web[$i] * $kazu[$i];?>円
           </td>
           <td>
             <input type="checkbox" name="sakujo<?php print $i;?>">
