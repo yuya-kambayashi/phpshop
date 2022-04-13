@@ -32,7 +32,7 @@
       $dbh = new PDO($dsn, $user, $password);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      $sql = 'SELECT name, price, gazou FROM mst_product where code=?';
+      $sql = 'SELECT * FROM mst_product where code=?';
       $stmt = $dbh->prepare($sql);
       $data[]=$pro_code;
       $stmt->execute($data);
@@ -41,6 +41,13 @@
       $pro_name=$rec['name'];
       $pro_price=$rec['price'];
       $pro_gazou_name_old=$rec['gazou'];
+      $pro_model_number=$rec['model_number'];
+      $pro_category=$rec['category'];
+      $pro_carton=$rec['carton'];
+      $pro_price_web=$rec['price_web'];
+      $pro_stock=$rec['stock'];
+      $pro_specification=$rec['specification'];
+      $pro_feature=$rec['feature'];
 
       $dbh = null;
 
@@ -70,8 +77,22 @@
       <input type="hidden" name="gazou_name_old" value="<?php print $pro_gazou_name_old; ?>">
       商品名<br />
       <input type="text" name="name" style="width:200px" value="<?php print $pro_name;?>"><br />
-      価格をきちんと入力してください。<br />
-      <input type="text" name="price" style="width:50px" value="<?php print $pro_price;?>">円<br />
+      型番<br />
+      <input type="text" name="model_number" style="width:200px" value="<?php print $pro_model_number;?>"><br />
+      商品区分<br />
+      <input type="text" name="category" style="width:200px" value="<?php print $pro_category;?>"><br />
+      入り数<br />
+      <input type="number" name="carton" style="width:50px" value="<?php print $pro_carton;?>">個<br />
+      標準価格<br />
+      <input type="number" name="price" style="width:50px" value="<?php print $pro_price;?>">円<br />
+      Web価格<br />
+      <input type="number" name="price_web" style="width:50px" value="<?php print $pro_price_web;?>">円<br />
+      在庫<br />
+      <input type="number" name="stock" style="width:50px" value="<?php print $pro_stock;?>">個<br />
+      仕様<br />
+      <input type="text" name="specification" style="width:200px" value="<?php print $pro_specification;?>"><br />
+      特徴<br />
+      <input type="text" name="feature" style="width:200px" value="<?php print $pro_feature;?>"><br />
       <br />
       <?php print $disp_gazou; ?>
       <br />
