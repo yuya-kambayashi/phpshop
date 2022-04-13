@@ -64,7 +64,8 @@
     <?php print $pro_code; ?>
     <br />
     商品名<br />
-    <?php print $pro_code; ?>
+    <?php print $pro_name; ?>
+    <br />
     <br />
     この商品を削除してよろしいですか？<br />
     <br />
