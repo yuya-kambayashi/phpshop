@@ -13,7 +13,7 @@
     print 'ようこそ<br />';
     print $_SESSION['member_name'];
     print '様　';
-    print '<a href="member_logout.php">ログアウト</a><br />';
+    print '<a href="member_account.php">アカウント</a><br />';
     print '<br />';
   }
 ?>
