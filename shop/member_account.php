@@ -79,6 +79,11 @@
 
     <a href="member_logout.php">ログアウト</a>
     <br />
+    <br />
+    
+    <a href="member_login.html">アカウントの切り替え</a>
+    <br />
+    <br />
 
     <input type="button" onclick="history.back()" value="戻る">
 
