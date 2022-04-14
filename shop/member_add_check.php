@@ -27,7 +27,7 @@
           $okflg = false;
       }
       else{
-          print '名前';
+          print '名前<br />';
           print $member_name;
           print '<br />';
           print '<br />';
