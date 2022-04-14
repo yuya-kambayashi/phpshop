@@ -7,7 +7,9 @@
   if(isset($_SESSION['member_login'])==false){
     print 'ようこそゲスト様<br />';
     print '<a href="member_login.html">ログイン</a><br />';
-    print '初めてご利用ですか? 新規登録はこちら<br />';
+    print '初めてご利用ですか? ';
+    print '<a href="member_add.php">新規登録</a>';
+    print 'はこちら<br />';
     print '<br />';
   }
   else{
