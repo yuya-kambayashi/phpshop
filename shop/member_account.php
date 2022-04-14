@@ -45,7 +45,7 @@
       $address = $rec['address'];
       $tel = $rec['tel'];
 
-      print '会員情報参照<br />';
+      print 'アカウントサービス<br />';
       print '<br />';  
 
       print 'お名前<br />';
