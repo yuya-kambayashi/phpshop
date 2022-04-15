@@ -41,6 +41,12 @@
       print '商品一覧<br /><br />';
 
       print '<form method="post"action="pro_branch.php">';
+      print '<table border="1">';
+      print '<tr>';
+      print '<td></td>';
+      print '<td>商品名</td>';
+      print '<td>標準価格</td>';
+      print '</tr>';
       while(true){
 
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -48,11 +54,15 @@
           break;
         }
 
-        print '<input type="radio" name="procode" value="'.$rec['code'].'">';
-        print $rec['name'].'---';
-        print $rec['price'].'円';
-        print '<br />';
+        print '<tr>';
+        print '<td>'.'<input type="radio" name="procode" value="'.$rec['code'].'">'.'</td>';
+        print '<td>'.$rec['name'].'</td>';
+        print '<td>'.$rec['price'].'</td>';
+        print '</tr>';
       }
+      
+      print '</table>';
+      print '<br>';
 
       print '<input type="submit" name="disp" value="参照">';
       print '<input type="submit" name="add" value="追加">';
