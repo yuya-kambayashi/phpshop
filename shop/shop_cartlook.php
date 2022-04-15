@@ -148,7 +148,6 @@
       <br />
       <input type="hidden" name="product_count" value="<?php print $product_count;?>">
       <input type="submit" value="数量変更"><br /><br />
-      <input type="button" onclick="history.back()" value="戻る">
     </form>
 
     <?php
@@ -160,6 +159,9 @@
         print '<a href="shop_kantan_check.php">レジに進む</a><br />';
       }
     ?>
+
+    <br />
+    <input type="button" onclick="history.back()" value="戻る">
 
   </body>
 </html>
