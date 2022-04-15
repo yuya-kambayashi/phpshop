@@ -92,17 +92,17 @@
     <form method="post" action="kazu_change.php">
       <table border="1">
         <tr>
-          <td>画像</td>
-          <td>商品名</td>
-          <td>型番</td>
-          <td>商品区分</td>
-          <td>入り数</td>
-          <td>標準価格</td>
-          <td>Web価格</td>
-          <td>在庫</td>
-          <td>数量</td>
-          <td>小計</td>
-          <td>削除</td>
+          <td style="width:50px">画像</td>
+          <td style="width:200px">商品名</td>
+          <td style="width:200px">型番</td>
+          <td style="width:200px">商品区分</td>
+          <td style="width:100px">入り数</td>
+          <td style="width:100px">標準価格</td>
+          <td style="width:100px">Web価格</td>
+          <td style="width:100px">在庫</td>
+          <td style="width:100px">数量</td>
+          <td style="width:100px">小計</td>
+          <td style="width:50px">削除</td>
         </tr> 
       <?php for($i=0; $i < $product_count; $i++){
       ?>
@@ -132,7 +132,7 @@
             <?php print $pro_stock[$i];?>個
           </td>
           <td>
-            <input type="text" name="kazu<?php print $i;?>" value="<?php print $kazu[$i];?>">
+            <input type="number" name="kazu<?php print $i;?>" style="width:50px" value="<?php print $kazu[$i];?>">個
           </td>
           <td>
             <?php print $pro_price_web[$i] * $kazu[$i];?>円
