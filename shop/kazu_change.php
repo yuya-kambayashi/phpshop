@@ -1,15 +1,13 @@
 <?php
   session_start();
   session_regenerate_id(true);
-
-  print '<a href="../../index.php"><img src = "../../icon.png"></a><br /><br />';
   
   require_once('../common/common.php');
 
   $post = sanitize($_POST);
 
-  $max = $_POST['max'];
-  for($i = 0; $i < $max; $i++){
+  $product_count = $_POST['product_count'];
+  for($i = 0; $i < $product_count; $i++){
 
     if (preg_match("/\A[0-9]+\z/", $post['kazu'.$i])==0){
       print '数量に誤りがあります。<br />';
@@ -28,7 +26,7 @@
 
   $cart=$_SESSION['cart'];
 
-  for($i = $max; 0 <= $i; $i--){
+  for($i = $product_count; 0 <= $i; $i--){
 
     if (isset($_POST['sakujo'.$i]) == true){
 

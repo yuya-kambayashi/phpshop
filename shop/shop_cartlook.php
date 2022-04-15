@@ -35,13 +35,13 @@
       if (isset($_SESSION['cart']) == true){
         $cart = $_SESSION['cart'];
         $kazu = $_SESSION['kazu'];
-        $max = count($cart);
+        $product_count = count($cart);
       }
       else{
-        $max = 0;
+        $product_count = 0;
       }
 
-      if ($max == 0){
+      if ($product_count == 0){
         print "カートに商品が入っていません。<br />";
         print "<br />";
         print '<a href = "shop_list.php">商品一覧に戻る</a>';
@@ -104,7 +104,7 @@
           <td>小計</td>
           <td>削除</td>
         </tr> 
-      <?php for($i=0; $i < $max; $i++){
+      <?php for($i=0; $i < $product_count; $i++){
       ?>
         <tr>
           <td>
@@ -145,7 +145,7 @@
       ?>
       </table>
       <br />
-      <input type="hidden" name="max" value="<?php print $max;?>">
+      <input type="hidden" name="product_count" value="<?php print $product_count;?>">
       <input type="submit" value="数量変更"><br /><br />
       <input type="button" onclick="history.back()" value="戻る">
     </form>
