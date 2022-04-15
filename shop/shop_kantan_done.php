@@ -78,7 +78,7 @@
 
         }
 
-        $sql = 'LOCK TABLES dat_sales WRITE, dat_sales_product WRITE';
+        $sql = 'LOCK TABLES dat_sales WRITE, dat_sales_product WRITE, mst_product WRITE';
         $stmt = $dbh->prepare($sql);
         $stmt->execute($data);
 
@@ -113,6 +113,27 @@
           $data[] = $kazu[$i];
           $stmt->execute($data);
 
+        }
+
+        // 注文数により在庫を更新します
+        for ($i = 0; $i < $max; $i++){
+
+          // 商品の変更前の在庫
+          $sql = 'SELECT stock FROM mst_product WHERE code=?';
+          $stmt = $dbh->prepare($sql);
+          $data = array();
+          $data[] = $cart[$i];
+          $stmt->execute($data);
+          $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
+          $stock = $rec['stock'];
+
+          $sql = 'UPDATE mst_product SET stock=? WHERE code=?';
+          $stmt = $dbh->prepare($sql);
+          $data = array();
+          $data[] = $stock - $kazu[$i];
+          $data[] = $cart[$i];
+          $stmt->execute($data);
         }
 
         $sql = 'UNLOCK TABLES';
