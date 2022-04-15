@@ -129,10 +129,11 @@
             <?php print $pro_price_web[$i]; ?>円
           </td>        
           <td>
+            <input type="hidden" name="pro_stock<?php print $i;?>" value="<?php print $pro_stock[$i];?>">
             <?php print $pro_stock[$i];?>個
           </td>
           <td>
-            <input type="number" name="kazu<?php print $i;?>" style="width:50px" value="<?php print $kazu[$i];?>">個
+            <input type="number" name="kazu<?php print $i;?>" style="width:50px" min="1" max="10" value="<?php print $kazu[$i];?>">個
           </td>
           <td>
             <?php print $pro_price_web[$i] * $kazu[$i];?>円

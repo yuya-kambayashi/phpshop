@@ -21,6 +21,12 @@
       exit();
     }
 
+    if ($post['kazu'.$i] > $post['pro_stock'.$i]){
+      print '数量が在庫を超えています<br />';
+      print '<a href="shop_cartlook.php">カートに戻る</a>';
+      exit();
+    }
+
     $kazu[] = $post['kazu'.$i];
   }
 
