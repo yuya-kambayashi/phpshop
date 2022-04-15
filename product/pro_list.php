@@ -32,7 +32,7 @@
       $dbh = new PDO($dsn, $user, $password);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      $sql = 'SELECT code,name, price FROM mst_product where 1';
+      $sql = 'SELECT * FROM mst_product where 1';
       $stmt = $dbh->prepare($sql);
       $stmt->execute();
 
@@ -44,8 +44,14 @@
       print '<table border="1">';
       print '<tr>';
       print '<td></td>';
+      print '<td>画像</td>';
       print '<td>商品名</td>';
+      print '<td>型番</td>';
+      print '<td>商品区分</td>';
+      print '<td>入り数</td>';
       print '<td>標準価格</td>';
+      print '<td>Web価格</td>';
+      print '<td>在庫</td>';
       print '</tr>';
       while(true){
 
@@ -56,8 +62,14 @@
 
         print '<tr>';
         print '<td>'.'<input type="radio" name="procode" value="'.$rec['code'].'">'.'</td>';
+        print '<td>'.$rec['gazou'].'</td>';
         print '<td>'.$rec['name'].'</td>';
+        print '<td>'.$rec['model_number'].'</td>';
+        print '<td>'.$rec['category'].'</td>';
+        print '<td>'.$rec['carton'].'</td>';
         print '<td>'.$rec['price'].'</td>';
+        print '<td>'.$rec['price_web'].'</td>';
+        print '<td>'.$rec['stock'].'</td>';
         print '</tr>';
       }
       
