@@ -45,7 +45,6 @@
 
       print '商品一覧<br /><br />';
 
-      // print '<form method="post"action="pro_branch.php">';
       print '<table border="1">';
       print '<tr>';
       print '<td>画像</td>';
