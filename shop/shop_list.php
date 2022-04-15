@@ -37,13 +37,27 @@
       $dbh = new PDO($dsn, $user, $password);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      $sql = 'SELECT code,name, price FROM mst_product where 1';
+      $sql = 'SELECT * FROM mst_product where 1';
       $stmt = $dbh->prepare($sql);
       $stmt->execute();
 
       $dbh = null;
 
       print '商品一覧<br /><br />';
+
+      // print '<form method="post"action="pro_branch.php">';
+      print '<table border="1">';
+      print '<tr>';
+      print '<td>画像</td>';
+      print '<td>商品名</td>';
+      print '<td>型番</td>';
+      print '<td>商品区分</td>';
+      print '<td>入り数</td>';
+      print '<td>標準価格</td>';
+      print '<td>Web価格</td>';
+      print '<td>在庫</td>';
+      print '</tr>';
+
 
       while(true){
 
@@ -52,12 +66,20 @@
           break;
         }
 
-        print '<a href="shop_product.php?procode='.$rec['code'].'">';
-        print $rec['name'].'---';
-        print $rec['price'].'円';
-        print '<a />';
-        print '<br />';
+        print '<tr>';
+        print '<td>'.$rec['gazou'].'</td>';
+        print '<td><a href="shop_product.php?procode='.$rec['code'].'">'.$rec['name'].'</a></td>';
+        print '<td>'.$rec['model_number'].'</td>';
+        print '<td>'.$rec['category'].'</td>';
+        print '<td>'.$rec['carton'].'</td>';
+        print '<td>'.$rec['price'].'</td>';
+        print '<td>'.$rec['price_web'].'</td>';
+        print '<td>'.$rec['stock'].'</td>';
+        print '</tr>';
       }
+
+      print '</table>';
+
 
     }catch (Exception $e){
       print 'ただいま障害により大変ご迷惑をおかけしております。';
