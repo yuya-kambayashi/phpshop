@@ -42,9 +42,13 @@
         else {
 
           $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
+          print $dsn.'<br />';
+
           $user = 'root';
           $password = '';
           $dbh = new PDO($dsn, $user, $password);
+          print $dbh.'<br />';
+
           $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
           $sql = 'SELECT member_name FROM dat_member where email=? LIMIT 1';
