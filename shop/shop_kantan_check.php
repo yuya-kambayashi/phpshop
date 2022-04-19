@@ -19,13 +19,13 @@
   </head>
   <body>
     <?php
+      require_once('../common/common.php');
 
       $member_id= $_SESSION['member_id'];
 
-      $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
-      $user = 'root';
-      $password = '';
-      $dbh = new PDO($dsn, $user, $password);
+      $ini = get_ini();
+      $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
+      $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       $sql = 'SELECT member_name, email, postal1, postal2, address, tel FROM dat_member WHERE id = ?';

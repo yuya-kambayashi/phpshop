@@ -42,9 +42,7 @@
         else {
 
 	        $ini = get_ini();
-
           $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
-          
           $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
           $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         

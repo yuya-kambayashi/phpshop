@@ -23,13 +23,13 @@
       <?php
 
     try{
+      require_once('../common/common.php');
 
       $pro_code = $_GET['procode'];
 
-      $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
-      $user = 'root';
-      $password = '';
-      $dbh = new PDO($dsn, $user, $password);
+      $ini = get_ini();
+      $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
+      $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       $sql = 'SELECT name, gazou FROM mst_product where code=?';

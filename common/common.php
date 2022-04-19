@@ -12,5 +12,3 @@ function get_ini(){
     $ini = parse_ini_file('../config/config.ini');
 	return $ini;
 }
-
-?>

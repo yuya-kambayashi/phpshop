@@ -31,13 +31,13 @@
       <?php
 
     try{
+      require_once('../common/common.php');
 
       $pro_code = $_GET['procode'];
 
-      $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
-      $user = 'root';
-      $password = '';
-      $dbh = new PDO($dsn, $user, $password);
+      $ini = get_ini();
+      $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
+      $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       $sql = 'SELECT * FROM mst_product where code=?';
@@ -180,13 +180,13 @@
       if(isset($_SESSION['member_login'])==true){
 
         try{
+          require_once('../common/common.php');
 
           $member_id= $_SESSION['member_id'];
 
-          $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';
-          $user = 'root';
-          $password = '';
-          $dbh = new PDO($dsn, $user, $password);
+          $ini = get_ini();
+          $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
+          $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
           $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
           $sql = 'SELECT member_name, web_id, company_name, division_name FROM dat_member WHERE id = ?';
