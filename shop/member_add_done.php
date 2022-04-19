@@ -26,9 +26,10 @@
         $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = 'INSERT INTO dat_member(member_name, company_name, division_name, email, password) VALUES (?,?,?,?,?)';
+        $sql = 'INSERT INTO dat_member(web_id, member_name, company_name, division_name, email, password) VALUES (?,?,?,?,?,?)';
         $stmt = $dbh->prepare($sql);
         $data = array();
+        $data[] = 'dummy';
         $data[] = $member_name;
         $data[] = $member_company_name;
         $data[] = $member_division_name;
@@ -52,9 +53,12 @@
         $data[] = $lastmemberid;
         $stmt->execute($data);
         
+        $dbh = null;
+
         print $member_name. 'さんを追加しました。<br>';
 
       }catch (Exception $e){
+        print $e.'<br/>';
         print 'ただいま障害により大変ご迷惑をおかけしております。';
         exit();
       }
