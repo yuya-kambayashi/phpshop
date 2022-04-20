@@ -47,57 +47,57 @@
       print '2<br/>';
 
 
-      $sql = 'SELECT * FROM mst_product where 1';
-      print '3<br/>';
+      // $sql = 'SELECT * FROM mst_product where 1';
+      // print '3<br/>';
 
-      $stmt = $dbh->prepare($sql);
-      print '4<br/>';
+      // $stmt = $dbh->prepare($sql);
+      // print '4<br/>';
 
-      $stmt->execute();
-      print '5<br/>';
-
-
-      $dbh = null;
-      print '6<br/>';
-
-      print '商品一覧<br /><br />';
-
-      print '<table border="1">';
-      print '<tr>';
-      print '<td>画像</td>';
-      print '<td>商品名</td>';
-      print '<td>型番</td>';
-      print '<td>商品区分</td>';
-      print '<td>入り数</td>';
-      print '<td>標準価格</td>';
-      print '<td>Web価格</td>';
-      print '<td>在庫</td>';
-      print '</tr>';
-
-      $product_list = $stmt->fetchAll(PDO::FETCH_BOTH);
-      print var_dump($product_list);
+      // $stmt->execute();
+      // print '5<br/>';
 
 
-      while(true){
+      // $dbh = null;
+      // print '6<br/>';
 
-        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($rec==false){
-          break;
-        }
+      // print '商品一覧<br /><br />';
 
-        print '<tr>';
-        print '<td>'.$rec['gazou'].'</td>';
-        print '<td><a href="shop_product.php?procode='.$rec['code'].'">'.$rec['name'].'</a></td>';
-        print '<td>'.$rec['model_number'].'</td>';
-        print '<td>'.$rec['category'].'</td>';
-        print '<td>'.$rec['carton'].'</td>';
-        print '<td>'.$rec['price'].'</td>';
-        print '<td>'.$rec['price_web'].'</td>';
-        print '<td>'.$rec['stock'].'</td>';
-        print '</tr>';
-      }
+      // print '<table border="1">';
+      // print '<tr>';
+      // print '<td>画像</td>';
+      // print '<td>商品名</td>';
+      // print '<td>型番</td>';
+      // print '<td>商品区分</td>';
+      // print '<td>入り数</td>';
+      // print '<td>標準価格</td>';
+      // print '<td>Web価格</td>';
+      // print '<td>在庫</td>';
+      // print '</tr>';
 
-      print '</table>';
+      // $product_list = $stmt->fetchAll(PDO::FETCH_BOTH);
+      // print var_dump($product_list);
+
+
+      // while(true){
+
+      //   $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+      //   if($rec==false){
+      //     break;
+      //   }
+
+      //   print '<tr>';
+      //   print '<td>'.$rec['gazou'].'</td>';
+      //   print '<td><a href="shop_product.php?procode='.$rec['code'].'">'.$rec['name'].'</a></td>';
+      //   print '<td>'.$rec['model_number'].'</td>';
+      //   print '<td>'.$rec['category'].'</td>';
+      //   print '<td>'.$rec['carton'].'</td>';
+      //   print '<td>'.$rec['price'].'</td>';
+      //   print '<td>'.$rec['price_web'].'</td>';
+      //   print '<td>'.$rec['stock'].'</td>';
+      //   print '</tr>';
+      // }
+
+      // print '</table>';
 
 
     }catch (\PDOException $e){
