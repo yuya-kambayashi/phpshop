@@ -97,6 +97,7 @@
 
 
     }catch (Exception $e){
+      print $e.'<br />';
       print 'ただいま障害により大変ご迷惑をおかけしております。';
       exit();
     }
