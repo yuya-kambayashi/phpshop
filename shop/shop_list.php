@@ -96,9 +96,14 @@
       print '</table>';
 
 
+    }catch (PDOException $e){
+      print $e.'<br />';
+      print 'PDOException';
+      exit();
+    
     }catch (Exception $e){
       print $e.'<br />';
-      print 'ただいま障害により大変ご迷惑をおかけしております。';
+      print 'Exception:ただいま障害により大変ご迷惑をおかけしております。';
       exit();
     }
 
