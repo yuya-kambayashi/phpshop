@@ -37,6 +37,9 @@
       print var_dump($ini).'<br />';
       $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
       print '0<br/>';
+      print $dsn.'<br/>';
+      print $ini['db_username'].'<br/>';
+      print $ini['db_password'].'<br/>';
       $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
       print '1<br/>';
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
