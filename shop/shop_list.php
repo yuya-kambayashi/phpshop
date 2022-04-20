@@ -34,7 +34,7 @@
       require_once('../common/common.php');
 
       $ini = get_ini();
-      print $ini.'<br />';
+      print var_dump($ini).'<br />';
       $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
       $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
