@@ -59,6 +59,9 @@
       print '<td>在庫</td>';
       print '</tr>';
 
+      $product_list = $stmt->fetchAll(PDO::FETCH_BOTH);
+      print var_dump($product_list);
+
 
       while(true){
 
