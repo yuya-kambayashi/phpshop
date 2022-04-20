@@ -36,14 +36,25 @@
       $ini = get_ini();
       print var_dump($ini).'<br />';
       $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
+      print '0<br/>';
       $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
+      print '1<br/>';
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      print '2<br/>';
+
 
       $sql = 'SELECT * FROM mst_product where 1';
+      print '3<br/>';
+
       $stmt = $dbh->prepare($sql);
+      print '4<br/>';
+
       $stmt->execute();
+      print '5<br/>';
+
 
       $dbh = null;
+      print '6<br/>';
 
       print '商品一覧<br /><br />';
 
