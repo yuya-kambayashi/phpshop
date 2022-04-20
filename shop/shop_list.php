@@ -34,31 +34,14 @@
       require_once('../common/common.php');
 
       $ini = get_ini();
-      print var_dump($ini).'<br />';
       $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
-      print '0<br/>';
-      print $dsn.'<br/>';
-      print $ini['db_username'].'<br/>';
-      print $ini['db_password'].'<br/>';
-      $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-      print var_dump($dbh).'<br />';
-      print '1<br/>';
+      $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      print '2<br/>';
-
-
       $sql = 'SELECT * FROM mst_product where 1';
-      print '3<br/>';
-
       $stmt = $dbh->prepare($sql);
-      print '4<br/>';
-
       $stmt->execute();
-      print '5<br/>';
-
 
       $dbh = null;
-      print '6<br/>';
 
       print '商品一覧<br /><br />';
 
@@ -73,10 +56,6 @@
       print '<td>Web価格</td>';
       print '<td>在庫</td>';
       print '</tr>';
-
-      $product_list = $stmt->fetchAll(PDO::FETCH_BOTH);
-      print var_dump($product_list);
-
 
       while(true){
 
@@ -99,12 +78,6 @@
 
       print '</table>';
 
-
-    }catch (\PDOException $e){
-      print $e.'<br />';
-      print 'PDOException';
-      exit();
-    
     }catch (Exception $e){
       print $e.'<br />';
       print 'Exception:ただいま障害により大変ご迷惑をおかけしております。';
