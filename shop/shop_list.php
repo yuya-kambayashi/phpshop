@@ -40,7 +40,7 @@
       print $dsn.'<br/>';
       print $ini['db_username'].'<br/>';
       print $ini['db_password'].'<br/>';
-      $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
+      $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
       print var_dump($dbh).'<br />';
       print '1<br/>';
       $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
