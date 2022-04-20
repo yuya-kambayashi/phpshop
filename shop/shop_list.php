@@ -100,7 +100,7 @@
       print '</table>';
 
 
-    }catch (PDOException $e){
+    }catch (\PDOException $e){
       print $e.'<br />';
       print 'PDOException';
       exit();
