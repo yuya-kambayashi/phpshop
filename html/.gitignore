@@ -51,10 +51,8 @@ Module.symvers
 Mkfile.old
 dkms.conf
 dashboard/
-img/
 applications.html
 bitnami.css
 favicon.ico
-index.php
 xampp/.version
 product/gazou/*
