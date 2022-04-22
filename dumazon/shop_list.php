@@ -81,6 +81,7 @@
     }catch (Exception $e){
       print $e.'<br />';
       print 'Exception:ただいま障害により大変ご迷惑をおかけしております。';
+      print 'by smarty';
       exit();
     }
 
@@ -91,7 +92,7 @@
     print '<a href="../staff_login/staff_login.html">スタッフログイン</a><br />';
     ?>
 
-    by smarty
+    
 
   </body>
 </html>
