@@ -1,50 +1,65 @@
-<?php /* Smarty version 2.6.31, created on 2022-04-22 10:11:56
+<?php /* Smarty version 2.6.31, created on 2022-04-22 10:53:30
          compiled from shop_list.tpl */ ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>ろくまる農園</title>
+    <title>Dumazon.co.jp 公式サイト。ダマゾンで本, 日用品, ファッション, 食品, ベビー用品, カー用品ほか一億種の商品をいつでもお安く。通常配送無料(一部を除く)</title>
   </head>
   <body>
     <?php if ($this->_tpl_vars['member_login'] == false): ?>
       ようこそゲスト様<br />
       <a href="./shop/member_login.html">ログイン</a><br />
-      初めてご利用ですか?<a href="../shop/member_add.php">新規登録</a>はこちら<br />
+      初めてご利用ですか?<a href="./shop/member_add.php">新規登録</a>はこちら<br />
       <br />
     <?php else: ?>
       ようこそ<br />
       <?php echo $this->_tpl_vars['member_name']; ?>
-様　<a href="../shop/member_account.php">アカウント</a><br />
+様<br />
+      <a href="./shop/member_account.php">アカウント</a><br />
       <br />
     <?php endif; ?>
-    <?php echo '<?php'; ?>
+
+    商品一覧<br /><br />
+
+    <table border="1">
+      
+    <tr>
+    <td>画像</td>
+    <td>商品名</td>
+    <td>型番</td>
+    <td>商品区分</td>
+    <td>入り数</td>
+    <td>標準価格</td>
+    <td>Web価格</td>
+    <td>在庫</td>
+    </tr>
+
+    <?php $_from = $this->_tpl_vars['products']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['product']):
+?>
+    <tr>
+    <td><?php echo $this->_tpl_vars['product']['code']; ?>
+</td>
+    <td><?php echo $this->_tpl_vars['product']['name']; ?>
+</td>
+    <td><?php echo $this->_tpl_vars['product']['model_number']; ?>
+</td>
+    <td><?php echo $this->_tpl_vars['product']['category']; ?>
+</td>
+    <td><?php echo $this->_tpl_vars['product']['carton']; ?>
+</td>
+    <td><?php echo $this->_tpl_vars['product']['price']; ?>
+</td>
+    <td><?php echo $this->_tpl_vars['product']['price_web']; ?>
+</td>
+    <td><?php echo $this->_tpl_vars['product']['stock']; ?>
+</td>
+    </tr>
+    <?php endforeach; endif; unset($_from); ?>
 
 
-    try
-        print '<tr>';
-        print '<td>'.$rec['gazou'].'</td>';
-        print '<td><a href="shop_product.php?procode='.$rec['code'].'">'.$rec['name'].'</a></td>';
-        print '<td>'.$rec['model_number'].'</td>';
-        print '<td>'.$rec['category'].'</td>';
-        print '<td>'.$rec['carton'].'</td>';
-        print '<td>'.$rec['price'].'</td>';
-        print '<td>'.$rec['price_web'].'</td>';
-        print '<td>'.$rec['stock'].'</td>';
-        print '</tr>';
-      }
-
-      print '</table>';
-
-    }catch (Exception $e)
-    print '<br />';
-    print '<a href="shop_cartlook.php">カートを見る</a><br />';
-
-    print '<br />';
-    print '<a href="../staff_login/staff_login.html">スタッフログイン</a><br />';
-    <?php echo '?>'; ?>
-
-
+    </table>
     
 
   </body>

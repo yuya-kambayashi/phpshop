@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>ろくまる農園</title>
+    <title>Dumazon.co.jp 公式サイト。ダマゾンで本, 日用品, ファッション, 食品, ベビー用品, カー用品ほか一億種の商品をいつでもお安く。通常配送無料(一部を除く)</title>
   </head>
   <body>
     {if $member_login == false}
@@ -16,70 +16,37 @@
       <a href="./shop/member_account.php">アカウント</a><br />
       <br />
     {/if}
-    <?php
 
-    try{
-      require_once('./common/common.php');
+    商品一覧<br /><br />
 
-      $ini = get_ini();
-      $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
-      $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
-      $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = 'SELECT * FROM mst_product where 1';
-      $stmt = $dbh->prepare($sql);
-      $stmt->execute();
+    <table border="1">
+      
+    <tr>
+    <td>画像</td>
+    <td>商品名</td>
+    <td>型番</td>
+    <td>商品区分</td>
+    <td>入り数</td>
+    <td>標準価格</td>
+    <td>Web価格</td>
+    <td>在庫</td>
+    </tr>
 
-      $dbh = null;
+    {foreach from=$products item=product}
+    <tr>
+    <td>{$product.code}</td>
+    <td>{$product.name}</td>
+    <td>{$product.model_number}</td>
+    <td>{$product.category}</td>
+    <td>{$product.carton}</td>
+    <td>{$product.price}</td>
+    <td>{$product.price_web}</td>
+    <td>{$product.stock}</td>
+    </tr>
+    {/foreach}
 
-      print '商品一覧<br /><br />';
 
-      print '<table border="1">';
-      print '<tr>';
-      print '<td>画像</td>';
-      print '<td>商品名</td>';
-      print '<td>型番</td>';
-      print '<td>商品区分</td>';
-      print '<td>入り数</td>';
-      print '<td>標準価格</td>';
-      print '<td>Web価格</td>';
-      print '<td>在庫</td>';
-      print '</tr>';
-
-      while(true){
-
-        $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($rec==false){
-          break;
-        }
-
-        print '<tr>';
-        print '<td>'.$rec['gazou'].'</td>';
-        print '<td><a href="shop_product.php?procode='.$rec['code'].'">'.$rec['name'].'</a></td>';
-        print '<td>'.$rec['model_number'].'</td>';
-        print '<td>'.$rec['category'].'</td>';
-        print '<td>'.$rec['carton'].'</td>';
-        print '<td>'.$rec['price'].'</td>';
-        print '<td>'.$rec['price_web'].'</td>';
-        print '<td>'.$rec['stock'].'</td>';
-        print '</tr>';
-      }
-
-      print '</table>';
-
-    }catch (Exception $e){
-      print $e.'<br />';
-      print 'Exception:ただいま障害により大変ご迷惑をおかけしております。';
-      print 'by smarty';
-      exit();
-    }
-
-    print '<br />';
-    print '<a href="shop_cartlook.php">カートを見る</a><br />';
-
-    print '<br />';
-    print '<a href="../staff_login/staff_login.html">スタッフログイン</a><br />';
-    ?>
-
+    </table>
     
 
   </body>
