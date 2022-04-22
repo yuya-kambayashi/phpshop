@@ -9,6 +9,6 @@ function sanitize($before){
 
 function get_ini(){
     
-    $ini = parse_ini_file('./configs/config.ini');
+    $ini = parse_ini_file('../configs/config.ini');
 	return $ini;
 }
