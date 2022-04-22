@@ -91,5 +91,7 @@
     print '<a href="../staff_login/staff_login.html">スタッフログイン</a><br />';
     ?>
 
+    by smarty
+
   </body>
 </html>

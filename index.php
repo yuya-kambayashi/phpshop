@@ -1,4 +1,4 @@
 <?php
-    header('Location: dumazon/shop/shop_list.php');
+    header('Location: dumazon/shop_list.php');
     exit();
 ?>
