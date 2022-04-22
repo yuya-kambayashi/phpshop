@@ -1,4 +1,10 @@
-<?php
-    header('Location: dumazon/shop/shop_list.php');
-    exit();
-?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ろくまる農園</title>
+  </head>
+  <body>
+	dumazon
+</body>
+</html>
