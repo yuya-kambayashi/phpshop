@@ -18,7 +18,14 @@
   $smarty->assign( 'member_login', isset($_SESSION['member_login']));
   $smarty->assign( 'member_name', isset($_SESSION['member_name']));
 
-  require_once('./common/common.php');
+  //require_once('./common/common.php');
+
+  //print var_dump($_SERVER['DOCUMENT_ROOT]').'<br />';
+  $commonfile = $_SERVER['DOCUMENT_ROOT']. '/dumazon/common/common.php';
+  print $commonfile.'<br />';
+  require_once($commonfile);
+
+  //print dirname(__FILE__).'/common/common.php'.'<br />';
 
   $ini = get_ini();
   $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';

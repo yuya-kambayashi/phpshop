@@ -8,7 +8,10 @@ function sanitize($before){
 }
 
 function get_ini(){
+
+    $path = $_SERVER['DOCUMENT_ROOT']. '/dumazon/configs/config.ini';
+    print $path.'<br />';
     
-    $ini = parse_ini_file('./configs/config.ini');
+    $ini = parse_ini_file($path);
 	return $ini;
 }
