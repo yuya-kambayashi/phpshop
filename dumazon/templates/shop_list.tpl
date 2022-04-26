@@ -14,7 +14,7 @@
     {else}
       ようこそ<br />
       {$member_name}様<br />
-      <a href="./shop/member_account.php">アカウント</a><br />
+      <a href="./member_account.php">アカウント</a><br />
       <br />
     {/if}
 

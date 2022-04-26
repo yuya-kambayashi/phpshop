@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2022-04-26 03:40:23
+<?php /* Smarty version 2.6.31, created on 2022-04-26 06:18:53
          compiled from shop_list.tpl */ ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +17,7 @@
       ようこそ<br />
       <?php echo $this->_tpl_vars['member_name']; ?>
 様<br />
-      <a href="./shop/member_account.php">アカウント</a><br />
+      <a href="./member_account.php">アカウント</a><br />
       <br />
     <?php endif; ?>
 
