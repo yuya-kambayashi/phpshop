@@ -37,7 +37,6 @@
     $smarty->assign( 'postal2', $rec['postal2']);
     $smarty->assign( 'address', $rec['address']);
     $smarty->assign( 'tel', $rec['tel']);
-
     $smarty->assign( 'db_error', false);
   }
   catch (Exception $e){
