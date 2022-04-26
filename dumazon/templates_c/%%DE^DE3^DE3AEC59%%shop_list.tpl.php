@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2022-04-26 06:46:33
+<?php /* Smarty version 2.6.31, created on 2022-04-26 07:16:17
          compiled from shop_list.tpl */ ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,7 @@
     </div>
     <?php if ($this->_tpl_vars['member_login'] == false): ?>
       ようこそゲスト様<br />
-      <a href="./shop/member_login.html">ログイン</a><br />
+      <a href="./member_login.html">ログイン</a><br />
       初めてご利用ですか?<a href="./member_add.php">新規登録</a>はこちら<br />
       <br />
     <?php else: ?>

@@ -11,7 +11,7 @@
     </div>
     {if $member_login == false}
       ようこそゲスト様<br />
-      <a href="./shop/member_login.html">ログイン</a><br />
+      <a href="./member_login.html">ログイン</a><br />
       初めてご利用ですか?<a href="./member_add.php">新規登録</a>はこちら<br />
       <br />
     {else}
