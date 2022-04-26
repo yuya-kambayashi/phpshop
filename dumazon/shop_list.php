@@ -12,11 +12,8 @@
 
   $smarty->assign( 'member_login', isset($_SESSION['member_login']));
   $smarty->assign( 'member_name', isset($_SESSION['member_name']));
-  $smarty->assign( 'top_page', $_SERVER['DOCUMENT_ROOT'].'/dumazon/shop_list.php');
-  $smarty->assign( 'icon', $_SERVER['DOCUMENT_ROOT'].'/dumazon/img/logo_mid.jpg');
 
-  $commonfile = $_SERVER['DOCUMENT_ROOT']. '/dumazon/common/common.php';
-  require_once($commonfile);
+  require_once($_SERVER['DOCUMENT_ROOT']. '/dumazon/common/common.php');
 
   $ini = get_ini();
   $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
