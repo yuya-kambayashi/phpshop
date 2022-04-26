@@ -12,7 +12,7 @@
     
     アカウントを作成<br />
     <br />
-    <form method="post" action="member_add_check.php">
+    <form method="post" action="./member_add_check.php">
       名前<br />
       <input type="text" name="name" style="width:200px"><br /><br />
       メールアドレス<br />
