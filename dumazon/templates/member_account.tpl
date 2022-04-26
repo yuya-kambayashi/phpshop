@@ -16,30 +16,35 @@
     {/if}
 
     {if $db_error == false} 
-      アカウントサービス<br />
-      <br />  
 
-      お名前<br />
-      { $onamae }
-      <br /><br />
+      <div>
+        アカウントサービス
+      <div>
 
-      メールアドレス<br />
-      { $email }
-      <br /><br />
+      <div id="user-info">
 
-      郵便番号<br />
-      { $postal1 }
-      -
-      { $postal2 }
-      <br /><br />
+        お名前<br />
+        { $onamae }
+        <br /><br />
 
-      住所<br />
-      { $address }
-      <br /><br />
+        メールアドレス<br />
+        { $email }
+        <br /><br />
 
-      電話番号<br />
-      { $tel }
-      <br /><br />
+        郵便番号<br />
+        { $postal1 }
+        -
+        { $postal2 }
+        <br /><br />
+
+        住所<br />
+        { $address }
+        <br /><br />
+
+        電話番号<br />
+        { $tel }
+        <br /><br />
+      </div>
 
     {else}
       ただいま障害により大変ご迷惑をおかけしております。

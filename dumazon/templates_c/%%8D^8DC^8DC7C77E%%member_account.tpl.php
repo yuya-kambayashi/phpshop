@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2022-04-26 06:45:26
+<?php /* Smarty version 2.6.31, created on 2022-04-26 06:58:37
          compiled from member_account.tpl */ ?>
 <!DOCTYPE html>
 <html>
@@ -18,36 +18,41 @@
     <?php endif; ?>
 
     <?php if ($this->_tpl_vars['db_error'] == false): ?> 
-      アカウントサービス<br />
-      <br />  
 
-      お名前<br />
-      <?php echo $this->_tpl_vars['onamae']; ?>
+      <div>
+        アカウントサービス
+      <div>
 
-      <br /><br />
+      <div id="user-info">
 
-      メールアドレス<br />
-      <?php echo $this->_tpl_vars['email']; ?>
+        お名前<br />
+        <?php echo $this->_tpl_vars['onamae']; ?>
 
-      <br /><br />
+        <br /><br />
 
-      郵便番号<br />
-      <?php echo $this->_tpl_vars['postal1']; ?>
+        メールアドレス<br />
+        <?php echo $this->_tpl_vars['email']; ?>
 
-      -
-      <?php echo $this->_tpl_vars['postal2']; ?>
+        <br /><br />
 
-      <br /><br />
+        郵便番号<br />
+        <?php echo $this->_tpl_vars['postal1']; ?>
 
-      住所<br />
-      <?php echo $this->_tpl_vars['address']; ?>
+        -
+        <?php echo $this->_tpl_vars['postal2']; ?>
 
-      <br /><br />
+        <br /><br />
 
-      電話番号<br />
-      <?php echo $this->_tpl_vars['tel']; ?>
+        住所<br />
+        <?php echo $this->_tpl_vars['address']; ?>
 
-      <br /><br />
+        <br /><br />
+
+        電話番号<br />
+        <?php echo $this->_tpl_vars['tel']; ?>
+
+        <br /><br />
+      </div>
 
     <?php else: ?>
       ただいま障害により大変ご迷惑をおかけしております。
