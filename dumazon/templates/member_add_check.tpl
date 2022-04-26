@@ -52,12 +52,12 @@
         {/if}
     {/if}
 
-    {if $invalid_input == false)
+    {if $invalid_input == false}
       <form>
         <input type="button" onclick="history.back()" value="戻る">
       </form>
     {else}
-      <form method="post" action="member_add_done.php">
+      <form method="post" action="./shop/member_add_done.php">
         <input type="hidden" name="name" value="'.$member_name.'">
         <input type="hidden" name="email" value="'.$member_email.'">
         <input type="hidden" name="company_name" value="'.$member_company_name.'">

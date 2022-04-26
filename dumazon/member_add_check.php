@@ -110,7 +110,7 @@
     }
     else{
 
-      $smarty->assign( 'invalid_input', false);
+      $smarty->assign( 'invalid_input', true);
     }
   }
   catch (Exception $e){
