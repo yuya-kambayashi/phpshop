@@ -11,7 +11,7 @@
   session_regenerate_id(true);
 
   $smarty->assign( 'member_login', isset($_SESSION['member_login']));
-  $smarty->assign( 'member_name', isset($_SESSION['member_name']));
+  $smarty->assign( 'member_name', $_SESSION['member_name']);
 
   require_once($_SERVER['DOCUMENT_ROOT']. '/dumazon/common/common.php');
 
