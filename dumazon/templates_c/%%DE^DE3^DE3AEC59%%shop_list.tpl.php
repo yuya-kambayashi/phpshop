@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2022-04-27 02:48:45
+<?php /* Smarty version 2.6.31, created on 2022-04-27 03:27:40
          compiled from shop_list.tpl */ ?>
 <!DOCTYPE html>
 <html>

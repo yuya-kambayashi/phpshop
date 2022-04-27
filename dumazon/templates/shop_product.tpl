@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Dumazon.co.jp 公式サイト。ダマゾンで本, 日用品, ファッション, 食品, ベビー用品, カー用品ほか一億種の商品をいつでもお安く。通常配送無料(一部を除く)</title>
   		<link rel="stylesheet" type="text/css" href="./css/header.css">
+      <script language="JavaScript" type="text/JavaScript" src="./js/shop_product.js"></script>
   </head>
   <body>
     <div class="header">
