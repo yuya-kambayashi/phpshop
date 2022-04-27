@@ -1,24 +1,78 @@
 <?php
+  require("../smarty/libs/Smarty.class.php");
+  $smarty = new Smarty();
+  $smarty->template_dir = "./templates";
+  $smarty->compile_dir = "./templates_c";
+  $smarty->cache_dir = "./cache";
+  $smarty->config_dir = "./configs";
+
   session_start();
   session_regenerate_id(true);
 
-  print '<a href="../../index.php"><img src = "../../icon.png"></a><br /><br />';
+  $smarty->assign( 'member_login', isset($_SESSION['member_login']));
+  if (isset($_SESSION['member_login'])){
+    $smarty->assign( 'member_name', $_SESSION['member_name']);
+  }
 
-  if(isset($_SESSION['member_login'])==false){
-    print 'ようこそゲスト様<br />';
-    print '<a href="member_login.html">ログイン</a><br />';
-    print '初めてご利用ですか? ';
-    print '<a href="member_add.php">新規登録</a>';
-    print 'はこちら<br />';
-    print '<br />';
+  try{
+    require_once($_SERVER['DOCUMENT_ROOT']. '/dumazon/common/common.php');
+
+    $pro_code = $_GET['procode'];
+
+    $ini = get_ini();
+    $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
+    $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sql = 'SELECT * FROM mst_product where code=?';
+    $stmt = $dbh->prepare($sql);
+    $data[]=$pro_code;
+    $stmt->execute($data);
+
+    $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+    $pro_name=$rec['name'];
+    $pro_price=$rec['price'];
+    $pro_gazou_name=$rec['gazou'];
+    $pro_model_number=$rec['model_number'];
+    $pro_category=$rec['category'];
+    $pro_carton=$rec['carton'];
+    $pro_price_web=$rec['price_web'];
+    $pro_stock=$rec['stock'];
+    $pro_specification=$rec['specification'];
+    $pro_feature=$rec['feature'];
+
+    $smarty->assign( 'pro_name', $pro_name);
+    $smarty->assign( 'pro_price', $pro_price);
+    $smarty->assign( 'disp_gazou', $disp_gazou);
+    $smarty->assign( 'pro_model_number', $pro_model_number);
+    $smarty->assign( 'pro_category', $pro_category);
+    $smarty->assign( 'pro_carton', $pro_carton);
+    $smarty->assign( 'pro_price_web', $pro_price_web);
+    $smarty->assign( 'pro_stock', $pro_stock);
+    $smarty->assign( 'pro_specification', $pro_specification);
+    $smarty->assign( 'pro_feature', $pro_feature);
+
+    $dbh = null;
+
+    if ($pro_gazou_name==''){
+        $disp_gazou='';
+    }
+    else{
+      $disp_gazou = '<img src = "../product/gazou/'.$pro_gazou_name.'">';
+    }
+
+    $smarty->assign( 'db_error', false);
+
+  }catch (Exception $e){
+    
+    $smarty->assign( 'db_error', true);
   }
-  else{
-    print 'ようこそ<br />';
-    print $_SESSION['member_name'];
-    print '様　';
-    print '<a href="member_account.php">アカウント</a><br />';
-    print '<br />';
-  }
+
+
+
+    
+  $smarty->display('shop_product.tpl');
+
 ?>
 
 <!DOCTYPE html>
@@ -30,47 +84,7 @@
   <body>
       <?php
 
-    try{
-      require_once($_SERVER['DOCUMENT_ROOT']. '/dumazon/common/common.php');
 
-      $pro_code = $_GET['procode'];
-
-      $ini = get_ini();
-      $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
-      $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
-      $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-      $sql = 'SELECT * FROM mst_product where code=?';
-      $stmt = $dbh->prepare($sql);
-      $data[]=$pro_code;
-      $stmt->execute($data);
-
-      $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-      $pro_name=$rec['name'];
-      $pro_price=$rec['price'];
-      $pro_gazou_name=$rec['gazou'];
-      $pro_model_number=$rec['model_number'];
-      $pro_category=$rec['category'];
-      $pro_carton=$rec['carton'];
-      $pro_price_web=$rec['price_web'];
-      $pro_stock=$rec['stock'];
-      $pro_specification=$rec['specification'];
-      $pro_feature=$rec['feature'];
-
-      $dbh = null;
-
-      if ($pro_gazou_name==''){
-          $disp_gazou='';
-      }
-      else{
-        $disp_gazou = '<img src = "../product/gazou/'.$pro_gazou_name.'">';
-      }
-      print '<a href="shop_cartin.php?procode='.$pro_code.'">カートに入れる</a><br /><br />';
-
-    }catch (Exception $e){
-      print 'ただいま障害により大変ご迷惑をおかけしております。';
-      exit();
-    }
 
     ?>
 

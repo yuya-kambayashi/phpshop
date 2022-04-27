@@ -22,15 +22,22 @@
       <br />
     {/if}
 
+    {if $db_error == false}
+      <a href="shop_cartin.php?procode={$pro_code}">カートに入れる</a><br /><br />
+    {else}
+      ただいま障害により大変ご迷惑をおかけしております。<br />
+    {/if}
+    
+
     <form>
     商品情報参照<br />
     <br />
     商品コード<br />
-    {$pro_cod}
+    {$pro_code}
     <br />
     <br />
     商品名<br />
-    {$pro_nam}
+    {$pro_name}
     <br />
     <br />
     型番<br />
@@ -46,7 +53,7 @@
     <br />
     <br />
     標準価格<br />
-    {$pro_pric}円
+    {$pro_price}円
     <br />
     <br />
     Web価格<br />
@@ -62,7 +69,7 @@
     <br />    
     <br />    
     特徴<br />
-    {$pro_featur}
+    {$pro_feature}
     <br />
     <br />
     {$disp_gazou}
