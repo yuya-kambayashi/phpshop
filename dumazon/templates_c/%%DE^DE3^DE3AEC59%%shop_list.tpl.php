@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2022-04-26 07:16:17
+<?php /* Smarty version 2.6.31, created on 2022-04-27 02:48:45
          compiled from shop_list.tpl */ ?>
 <!DOCTYPE html>
 <html>
@@ -43,10 +43,11 @@
     foreach ($_from as $this->_tpl_vars['product']):
 ?>
     <tr>
-    <td><?php echo $this->_tpl_vars['product']['code']; ?>
+    <td><?php echo $this->_tpl_vars['product']['gazou']; ?>
 </td>
-    <td><?php echo $this->_tpl_vars['product']['name']; ?>
-</td>
+    <td><a href="./shop_product.php?procode=<?php echo $this->_tpl_vars['product']['code']; ?>
+"><?php echo $this->_tpl_vars['product']['name']; ?>
+</a></td>
     <td><?php echo $this->_tpl_vars['product']['model_number']; ?>
 </td>
     <td><?php echo $this->_tpl_vars['product']['category']; ?>

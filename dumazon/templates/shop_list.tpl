@@ -38,8 +38,8 @@
 
     {foreach from=$products item=product}
     <tr>
-    <td>{$product.code}</td>
-    <td>{$product.name}</td>
+    <td>{$product.gazou}</td>
+    <td><a href="./shop_product.php?procode={$product.code}">{$product.name}</a></td>
     <td>{$product.model_number}</td>
     <td>{$product.category}</td>
     <td>{$product.carton}</td>
