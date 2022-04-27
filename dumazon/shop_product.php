@@ -41,6 +41,16 @@
     $pro_specification=$rec['specification'];
     $pro_feature=$rec['feature'];
 
+    $dbh = null;
+
+    if ($pro_gazou_name==''){
+        $disp_gazou='';
+    }
+    else{
+      $disp_gazou = '<img src = "../product/gazou/'.$pro_gazou_name.'">';
+    }
+
+    $smarty->assign( 'pro_code', $pro_code);
     $smarty->assign( 'pro_name', $pro_name);
     $smarty->assign( 'pro_price', $pro_price);
     $smarty->assign( 'disp_gazou', $disp_gazou);
@@ -52,224 +62,83 @@
     $smarty->assign( 'pro_specification', $pro_specification);
     $smarty->assign( 'pro_feature', $pro_feature);
 
-    $dbh = null;
-
-    if ($pro_gazou_name==''){
-        $disp_gazou='';
-    }
-    else{
-      $disp_gazou = '<img src = "../product/gazou/'.$pro_gazou_name.'">';
-    }
 
     $smarty->assign( 'db_error', false);
 
   }catch (Exception $e){
-    
     $smarty->assign( 'db_error', true);
+    exit();
   }
 
+  // CPQ連携
 
+  $web_id = '';
+  $company_name = '';
+  $division_name = '';
+  $member_name = '';
 
+  if(isset($_SESSION['member_login'])==true){
+
+    try{
+      require_once($_SERVER['DOCUMENT_ROOT']. '/dumazon/common/common.php');
+
+      $member_id= $_SESSION['member_id'];
+
+      $ini = get_ini();
+      $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
+      $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
+      $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+      $sql = 'SELECT member_name, web_id, company_name, division_name FROM dat_member WHERE id = ?';
+      $stmt = $dbh->prepare($sql);
+      $data[0] = $member_id;
+      $stmt->execute($data);
+      $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      $dbh = null;
+
+      $web_id = $rec['web_id'];
+      $company_name = $rec['company_name'];
+      $division_name = $rec['division_name'];
+      $member_name = $rec['member_name'];
+
+    }catch (Exception $e){
+      $smarty->assign( 'db_error', true);
+      exit();
+    }
+  }
+
+  require_once($_SERVER['DOCUMENT_ROOT']. '/dumazon/common/encrypt.php');
+
+  
+  // Usage:
+  $raw_data = array(
+    'web_id' 		=> $web_id,
+    'company_name' 	=> $company_name,
+    'division_name'	=> $division_name,
+    'member_name' 	=> $member_name
+  );
+  $smarty->assign( 'raw_data', $raw_data);
+
+  // jsonに変換
+  $json_string = json_encode( $raw_data );
+  $smarty->assign( 'json_string', $json_string);
+
+  // 暗号化用事前共有鍵（8桁のランダム文字列）
+  // !!!!!10桁ではなく、8桁!!!!!!!!!!!!!!!
+  $password = "Tu31J7F1";
+  $smarty->assign( 'password', $password);
+
+  // 暗号化処理
+  $encrypted = encrypt($json_string, $password);
+  $smarty->assign( 'encrypted', $encrypted);
+
+  $rawurlencode = rawurlencode($encrypted);
+  $smarty->assign( 'rawurlencode', $rawurlencode);
+
+  // 復号処理
+  $decrypted = decrypt($encrypted, $password);
+  $smarty->assign( 'decrypted', $decrypted);
     
   $smarty->display('shop_product.tpl');
-
 ?>
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>ろくまる農園</title>
-  </head>
-  <body>
-      <?php
-
-
-
-    ?>
-
-    <form>
-    商品情報参照<br />
-    <br />
-    商品コード<br />
-    <?php print $pro_code; ?>
-    <br />
-    <br />
-    商品名<br />
-    <?php print $pro_name; ?>
-    <br />
-    <br />
-    型番<br />
-    <?php print $pro_model_number; ?>
-    <br />
-    <br />
-    商品区分<br />
-    <?php print $pro_category; ?>
-    <br />
-    <br />
-    入り数<br />
-    <?php print $pro_carton; ?>個
-    <br />
-    <br />
-    標準価格<br />
-    <?php print $pro_price; ?>円
-    <br />
-    <br />
-    Web価格<br />
-    <?php print $pro_price_web; ?>円
-    <br />
-    <br />
-    在庫<br />
-    <?php print $pro_stock; ?>個
-    <br />    
-    <br />    
-    仕様<br />
-    <?php print $pro_specification; ?>
-    <br />    
-    <br />    
-    特徴<br />
-    <?php print $pro_feature; ?>
-    <br />
-    <br />
-    <?php print $disp_gazou; ?>
-    <br />
-    <br />
-    <input type="button" onclick="history.back()" value="戻る">
-    </form>
-    <hr style="border:none;border-top:dashed 3px gray;height:1px;">
-    <form name="form1" action="">
-      認証コード（ AXEL or 自社サイト　/ 開始画面 / 選択するタイプ ）
-      <br />
-      <input id="Radio1" name="RadioGroup1" type="radio" checked/>
-      <label for="Radio1">AXEL_TYPE_反応装置ラボ</label><br/>
-      <input id="Radio2" name="RadioGroup1" type="radio" />
-      <label for="Radio2">AXEL_TYPE_反応ろ過装置ラボ</label><br/>
-      <input id="Radio3" name="RadioGroup1" type="radio" />
-      <label for="Radio3">AXEL_TYPE_NULL</label><br/>
-      <input id="Radio4" name="RadioGroup1" type="radio" />
-      <label for="Radio4">AXEL_STANDARD_反応装置ラボ</label><br/>
-      <input id="Radio5" name="RadioGroup1" type="radio" />
-      <label for="Radio5">AXEL_STANDARD_反応ろ過装置ラボ</label><br/>
-      <input id="Radio6" name="RadioGroup1" type="radio" />
-      <label for="Radio6">AXEL_STANDARD_NULL * error</label><br/>
-      <input id="Radio21" name="RadioGroup1" type="radio" />
-      <label for="Radio21">CORP_TYPE_反応装置ラボ</label><br/>
-      <input id="Radio22" name="RadioGroup1" type="radio" />
-      <label for="Radio22">CORP_TYPE_反応ろ過装置ラボ</label><br/>
-      <input id="Radio23" name="RadioGroup1" type="radio" />
-      <label for="Radio23">CORP_TYPE_NULL</label><br/>
-      <input id="Radio24" name="RadioGroup1" type="radio" />
-      <label for="Radio24">CORP_STANDARD_反応装置ラボ</label><br/>
-      <input id="Radio25" name="RadioGroup1" type="radio" />
-      <label for="Radio25">CORP_STANDARD_反応ろ過装置ラボ</label><br/>
-      <input id="Radio26" name="RadioGroup1" type="radio" />
-      <label for="Radio26">CORP_STANDARD_NULL * error</label><br/>
-    </form>
-    <?php
-      if ( isset($_SESSION['member_login']) == true ){
-        print '<button id="linkToCPQ" type="button" onclick="linkToCPQ()">CPQ連携</button>';
-      }
-      else {
-        print '※ CPQ連携には会員ログインが必要です<br>';
-        print '<button id="linkToCPQ" type="button" onclick="linkToCPQ()" disabled=true>CPQ連携</button>';
-      }
-    ?>
-    <br />
-    <br />
-    連携用URL
-    <br />
-    <p id="URL"></p>
-    <hr style="border:none;border-top:dashed 3px gray;height:1px;">
-    <br />
-    デバッグ用データ
-    <br />
-    <br />
-    <?php
-
-      $web_id = '';
-      $company_name = '';
-      $division_name = '';
-      $member_name = '';
-
-      if(isset($_SESSION['member_login'])==true){
-
-        try{
-          require_once($_SERVER['DOCUMENT_ROOT']. '/dumazon/common/common.php');
-
-          $member_id= $_SESSION['member_id'];
-
-          $ini = get_ini();
-          $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
-          $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
-          $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-          $sql = 'SELECT member_name, web_id, company_name, division_name FROM dat_member WHERE id = ?';
-          $stmt = $dbh->prepare($sql);
-          $data[0] = $member_id;
-          $stmt->execute($data);
-          $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-
-          $dbh = null;
-
-          $web_id = $rec['web_id'];
-          $company_name = $rec['company_name'];
-          $division_name = $rec['division_name'];
-          $member_name = $rec['member_name'];
-
-        }catch (Exception $e){
-          print $e.'<br/>';
-          print 'ただいま障害により大変ご迷惑をおかけしております。';
-          exit();
-        }
-      }
-
-      require_once($_SERVER['DOCUMENT_ROOT']. '/dumazon/common/encrypt.php');
-      
-      // Usage:
-      $raw_data = array(
-        'web_id' 		=> $web_id,
-        'company_name' 	=> $company_name,
-        'division_name'	=> $division_name,
-        'member_name' 	=> $member_name
-      );
-
-      print "raw_data: ";
-      print_r($raw_data);
-      print "<br>";
-
-      // jsonに変換
-      $json_data = json_encode( $raw_data );
-      print "json_data: " . $json_data . "<br>";
-
-      $str = $json_data;
-      print "Plain text: " . $str . "<br>";
-
-      // 暗号化用事前共有鍵（8桁のランダム文字列）
-      // !!!!!10桁ではなく、8桁!!!!!!!!!!!!!!!
-      $password = "Tu31J7F1";
-      print "Password: " . $password . "<br>";
-
-      // 暗号化処理
-      $encrypted = encrypt($str, $password);
-      print "encrypted：" . $encrypted . "<br>";
-
-      $rawurlencode = rawurlencode($encrypted);
-      print "rawurlencode:" . $rawurlencode . "<br>";
-
-      // 復号処理
-      $decrypted = decrypt($encrypted, $password);
-      print "decrypted：" . $decrypted . "<br>";
-
-      // 連携用認証コード（10桁のランダム文字列）
-
-
-      //$auth = "AXEL_cjT5K";
-      //$auth = "CORP_12345";
-      // $url = "http://localhost:3000/#/index-from-AXEL.html" ."?s=" .$auth. "&m=" . $rawurlencode;
-      //$url = "http://localhost:3000/#/index.html" ."?s=" .$auth. "&m=" . $rawurlencode;
-      //print "url:" . $url . "<br>";
-
-    ?>
-
-  </body>
-</html>

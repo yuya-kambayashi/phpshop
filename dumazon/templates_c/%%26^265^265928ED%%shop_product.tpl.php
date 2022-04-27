@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2022-04-27 05:31:31
+<?php /* Smarty version 2.6.31, created on 2022-04-27 05:54:41
          compiled from shop_product.tpl */ ?>
 <!DOCTYPE html>
 <html>
@@ -121,10 +121,12 @@
       <input id="Radio26" name="RadioGroup1" type="radio" />
       <label for="Radio26">CORP_STANDARD_NULL * error</label><br/>
     </form>
-    <?php echo '<?php'; ?>
-
-      if ( isset($_SESSION['member_login']) == true )      else     <?php echo '?>'; ?>
-
+    <?php if ($this->_tpl_vars['member_login'] == true): ?>
+      <button id="linkToCPQ" type="button" onclick="linkToCPQ()">CPQ連携</button>
+    <?php else: ?>
+      CPQ連携には会員ログインが必要です<br>
+      <button id="linkToCPQ" type="button" onclick="linkToCPQ()" disabled=true>CPQ連携</button>
+    <?php endif; ?>
     <br />
     <br />
     連携用URL
@@ -135,85 +137,25 @@
     デバッグ用データ
     <br />
     <br />
-    <?php echo '<?php'; ?>
 
+    raw_data: <?php echo $this->_tpl_vars['raw_data']; ?>
 
-      $web_id = '';
-      $company_name = '';
-      $division_name = '';
-      $member_name = '';
+    <br>
+    json_string: <?php echo $this->_tpl_vars['json_string']; ?>
 
-      if(isset($_SESSION['member_login'])==true)catch (Exception $e)      }
+    <br>
+    password: <?php echo $this->_tpl_vars['password']; ?>
 
-      require_once('../common/encrypt.php');
-      
-      // Usage:
-      $raw_data = array(
-        'web_id' 		=> $web_id,
-        'company_name' 	=> $company_name,
-        'division_name'	=> $division_name,
-        'member_name' 	=> $member_name
-      );
+    <br>
+    encrypted: <?php echo $this->_tpl_vars['encrypted']; ?>
 
-      print "raw_data: ";
-      print_r($raw_data);
-      print "<br>";
+    <br>
+    rawurlencode: <?php echo $this->_tpl_vars['rawurlencode']; ?>
 
-      // jsonに変換
-      $json_data = json_encode( $raw_data );
-      print "json_data: " . $json_data . "<br>";
+    <br>
+    decrypted: <?php echo $this->_tpl_vars['decrypted']; ?>
 
-      $str = $json_data;
-      print "Plain text: " . $str . "<br>";
-
-      // 暗号化用事前共有鍵（8桁のランダム文字列）
-      // !!!!!10桁ではなく、8桁!!!!!!!!!!!!!!!
-      $password = "Tu31J7F1";
-      print "Password: " . $password . "<br>";
-
-      // 暗号化処理
-      $encrypted = encrypt($str, $password);
-      print "encrypted：" . $encrypted . "<br>";
-
-      $rawurlencode = rawurlencode($encrypted);
-      print "rawurlencode:" . $rawurlencode . "<br>";
-
-      // 復号処理
-      $decrypted = decrypt($encrypted, $password);
-      print "decrypted：" . $decrypted . "<br>";
-
-      // 連携用認証コード（10桁のランダム文字列）
-
-
-      //$auth = "AXEL_cjT5K";
-      //$auth = "CORP_12345";
-      // $url = "http://localhost:3000/#/index-from-AXEL.html" ."?s=" .$auth. "&m=" . $rawurlencode;
-      //$url = "http://localhost:3000/#/index.html" ."?s=" .$auth. "&m=" . $rawurlencode;
-      //print "url:" . $url . "<br>";
-
-    <?php echo '?>'; ?>
-
-    <script language="JavaScript"  type="text/javascript">
-
-      function linkToCPQ() 
-        else if (document.getElementById('Radio2').checked)        else if (document.getElementById('Radio3').checked)        else if ( document.getElementById('Radio4').checked ) 
-        else if (document.getElementById('Radio5').checked)        else if (document.getElementById('Radio6').checked)        else if ( document.getElementById('Radio21').checked ) 
-        else if (document.getElementById('Radio22').checked)        else if (document.getElementById('Radio23').checked)        else if ( document.getElementById('Radio24').checked ) 
-        else if (document.getElementById('Radio25').checked)        else if (document.getElementById('Radio26').checked)        
-        //const baseURL = "http://localhost:3000/#/index-from-AXEL.html";
-        const baseURL = "http://localhost:3000/#/index.html";
-
-        var rawurlencode = '<?php echo '<?php'; ?>
- echo $rawurlencod}';
-
-        var targetURL = baseURL + "?s=" + key + "&m=" + rawurlencode;
-        console.log(targetURL);
-        // URLの表示
-        document.getElementById("URL").textContent = targetURL;
-        // CPQへの遷移
-        window.open(targetURL, '_blank'); 
-      }
-
-    </script>
+    <br>
+    
   </body>
 </html>

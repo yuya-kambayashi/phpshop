@@ -106,15 +106,12 @@
       <input id="Radio26" name="RadioGroup1" type="radio" />
       <label for="Radio26">CORP_STANDARD_NULL * error</label><br/>
     </form>
-    <?php
-      if ( isset($_SESSION['member_login']) == true ){
-        print '<button id="linkToCPQ" type="button" onclick="linkToCPQ()">CPQ連携</button>';
-      }
-      else {
-        print '※ CPQ連携には会員ログインが必要です<br>';
-        print '<button id="linkToCPQ" type="button" onclick="linkToCPQ()" disabled=true>CPQ連携</button>';
-      }
-    ?>
+    {if $member_login == true }
+      <button id="linkToCPQ" type="button" onclick="linkToCPQ()">CPQ連携</button>
+    {else}
+      CPQ連携には会員ログインが必要です<br>
+      <button id="linkToCPQ" type="button" onclick="linkToCPQ()" disabled=true>CPQ連携</button>
+    {/if}
     <br />
     <br />
     連携用URL
@@ -125,148 +122,19 @@
     デバッグ用データ
     <br />
     <br />
-    <?php
 
-      $web_id = '';
-      $company_name = '';
-      $division_name = '';
-      $member_name = '';
-
-      if(isset($_SESSION['member_login'])==true){
-
-        try{
-          require_once('../common/common.php');
-
-          $member_id= $_SESSION['member_id'];
-
-          $ini = get_ini();
-          $dsn = 'mysql:dbname='.$ini['db_dbname'].';host='.$ini['db_host'].';charset=utf8';
-          $dbh = new PDO($dsn, $ini['db_username'], $ini['db_password']);
-          $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-          $sql = 'SELECT member_name, web_id, company_name, division_name FROM dat_member WHERE id = ?';
-          $stmt = $dbh->prepare($sql);
-          $data[0] = $member_id;
-          $stmt->execute($data);
-          $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-
-          $dbh = null;
-
-          $web_id = $rec['web_id'];
-          $company_name = $rec['company_name'];
-          $division_name = $rec['division_name'];
-          $member_name = $rec['member_name'];
-
-        }catch (Exception $e){
-          print $e.'<br/>';
-          print 'ただいま障害により大変ご迷惑をおかけしております。';
-          exit();
-        }
-      }
-
-      require_once('../common/encrypt.php');
-      
-      // Usage:
-      $raw_data = array(
-        'web_id' 		=> $web_id,
-        'company_name' 	=> $company_name,
-        'division_name'	=> $division_name,
-        'member_name' 	=> $member_name
-      );
-
-      print "raw_data: ";
-      print_r($raw_data);
-      print "<br>";
-
-      // jsonに変換
-      $json_data = json_encode( $raw_data );
-      print "json_data: " . $json_data . "<br>";
-
-      $str = $json_data;
-      print "Plain text: " . $str . "<br>";
-
-      // 暗号化用事前共有鍵（8桁のランダム文字列）
-      // !!!!!10桁ではなく、8桁!!!!!!!!!!!!!!!
-      $password = "Tu31J7F1";
-      print "Password: " . $password . "<br>";
-
-      // 暗号化処理
-      $encrypted = encrypt($str, $password);
-      print "encrypted：" . $encrypted . "<br>";
-
-      $rawurlencode = rawurlencode($encrypted);
-      print "rawurlencode:" . $rawurlencode . "<br>";
-
-      // 復号処理
-      $decrypted = decrypt($encrypted, $password);
-      print "decrypted：" . $decrypted . "<br>";
-
-      // 連携用認証コード（10桁のランダム文字列）
-
-
-      //$auth = "AXEL_cjT5K";
-      //$auth = "CORP_12345";
-      // $url = "http://localhost:3000/#/index-from-AXEL.html" ."?s=" .$auth. "&m=" . $rawurlencode;
-      //$url = "http://localhost:3000/#/index.html" ."?s=" .$auth. "&m=" . $rawurlencode;
-      //print "url:" . $url . "<br>";
-
-    ?>
-    <script language="JavaScript"  type="text/javascript">
-
-      function linkToCPQ(){
-        
-        // 連携用URLの生成
-        var key = '';
-        if ( document.getElementById('Radio1').checked ){
-          key = 'AXEL_TYPE_1';
-        } 
-        else if (document.getElementById('Radio2').checked){
-          key = 'AXEL_TYPE_2';
-        }
-        else if (document.getElementById('Radio3').checked){
-          key = 'AXEL_TYPE_0';
-        }
-        else if ( document.getElementById('Radio4').checked ){
-          key = 'AXEL_STANDARD_1';
-        } 
-        else if (document.getElementById('Radio5').checked){
-          key = 'AXEL_STANDARD_2';
-        }
-        else if (document.getElementById('Radio6').checked){
-          key = 'AXEL_STANDARD_0';
-        }
-        else if ( document.getElementById('Radio21').checked ){
-          key = 'CORP_TYPE_1';
-        } 
-        else if (document.getElementById('Radio22').checked){
-          key = 'CORP_TYPE_2';
-        }
-        else if (document.getElementById('Radio23').checked){
-          key = 'CORP_TYPE_0';
-        }
-        else if ( document.getElementById('Radio24').checked ){
-          key = 'CORP_STANDARD_1';
-        } 
-        else if (document.getElementById('Radio25').checked){
-          key = 'CORP_STANDARD_2';
-        }
-        else if (document.getElementById('Radio26').checked){
-          key = 'CORP_STANDARD_0';
-        }
-        
-        //const baseURL = "http://localhost:3000/#/index-from-AXEL.html";
-        const baseURL = "http://localhost:3000/#/index.html";
-
-        var rawurlencode = '<?php echo $rawurlencod}';
-
-        var targetURL = baseURL + "?s=" + key + "&m=" + rawurlencode;
-        console.log(targetURL);
-        // URLの表示
-        document.getElementById("URL").textContent = targetURL;
-        // CPQへの遷移
-        window.open(targetURL, '_blank'); 
-      }
-
-    </script>
+    raw_data: {$raw_data}
+    <br>
+    json_string: {$json_string}
+    <br>
+    password: {$password}
+    <br>
+    encrypted: {$encrypted}
+    <br>
+    rawurlencode: {$rawurlencode}
+    <br>
+    decrypted: {$decrypted}
+    <br>
+    
   </body>
 </html>
