@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2022-04-27 05:54:41
+<?php /* Smarty version 2.6.31, created on 2022-04-28 07:29:36
          compiled from shop_product.tpl */ ?>
 <!DOCTYPE html>
 <html>
@@ -6,7 +6,64 @@
     <meta charset="UTF-8" />
     <title>Dumazon.co.jp 公式サイト。ダマゾンで本, 日用品, ファッション, 食品, ベビー用品, カー用品ほか一億種の商品をいつでもお安く。通常配送無料(一部を除く)</title>
   		<link rel="stylesheet" type="text/css" href="./css/header.css">
-      <script language="JavaScript" type="text/JavaScript" src="./js/shop_product.js"></script>
+  <script language="JavaScript"  type="text/javascript">
+    $data = '<?php echo $this->_tpl_vars['rawurlencode']; ?>
+';
+    <?php echo '
+    function linkToCPQ(){
+
+        // 連携用URLの生成
+        var key = \'\';
+        if ( document.getElementById(\'Radio1\').checked ){
+            key = \'AXEL_TYPE_1\';
+        } 
+        else if (document.getElementById(\'Radio2\').checked){
+            key = \'AXEL_TYPE_2\';
+        }
+        else if (document.getElementById(\'Radio3\').checked){
+            key = \'AXEL_TYPE_0\';
+        }
+        else if ( document.getElementById(\'Radio4\').checked ){
+            key = \'AXEL_STANDARD_1\';
+        } 
+        else if (document.getElementById(\'Radio5\').checked){
+            key = \'AXEL_STANDARD_2\';
+        }
+        else if (document.getElementById(\'Radio6\').checked){
+            key = \'AXEL_STANDARD_0\';
+        }
+        else if ( document.getElementById(\'Radio21\').checked ){
+            key = \'CORP_TYPE_1\';
+        } 
+        else if (document.getElementById(\'Radio22\').checked){
+            key = \'CORP_TYPE_2\';
+        }
+        else if (document.getElementById(\'Radio23\').checked){
+            key = \'CORP_TYPE_0\';
+        }
+        else if ( document.getElementById(\'Radio24\').checked ){
+            key = \'CORP_STANDARD_1\';
+        } 
+        else if (document.getElementById(\'Radio25\').checked){
+            key = \'CORP_STANDARD_2\';
+        }
+        else if (document.getElementById(\'Radio26\').checked){
+            key = \'CORP_STANDARD_0\';
+        }
+
+        //const baseURL = "http://localhost:3000/#/index-from-AXEL.html";
+        const baseURL = "http://localhost:3000/#/index.html";
+
+        var targetURL = baseURL + "?s=" + key + "&m=" + $data;
+        console.log(targetURL);
+        // URLの表示
+        document.getElementById("URL").textContent = targetURL;
+        // CPQへの遷移
+        window.open(targetURL, \'_blank\'); 
+    }
+    '; ?>
+
+  </script>
   </head>
   <body>
     <div class="header">
@@ -26,7 +83,7 @@
     <?php endif; ?>
 
     <?php if ($this->_tpl_vars['db_error'] == false): ?>
-      <a href="shop_cartin.php?procode=<?php echo $this->_tpl_vars['pro_code']; ?>
+      <a href="./shop_cartin.php?procode=<?php echo $this->_tpl_vars['pro_code']; ?>
 ">カートに入れる</a><br /><br />
     <?php else: ?>
       ただいま障害により大変ご迷惑をおかけしております。<br />
@@ -121,11 +178,12 @@
       <input id="Radio26" name="RadioGroup1" type="radio" />
       <label for="Radio26">CORP_STANDARD_NULL * error</label><br/>
     </form>
+
     <?php if ($this->_tpl_vars['member_login'] == true): ?>
-      <button id="linkToCPQ" type="button" onclick="linkToCPQ()">CPQ連携</button>
+      <button id="linkToCPQ" type="button" onclick="linkToCPQ($data)">CPQ連携</button>
     <?php else: ?>
       CPQ連携には会員ログインが必要です<br>
-      <button id="linkToCPQ" type="button" onclick="linkToCPQ()" disabled=true>CPQ連携</button>
+      <button id="linkToCPQ" type="button" onclick="linkToCPQ($data)" disabled=true>CPQ連携</button>
     <?php endif; ?>
     <br />
     <br />
