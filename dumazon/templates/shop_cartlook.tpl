@@ -44,7 +44,7 @@
           <td style="width:100px">小計</td>
           <td style="width:50px">削除</td>
         </tr> 
-        {section name=i start=0 loop=$products_length}
+        {section name=i start=0 loop=$products_count}
         <tr>
           <td>
             {$pro_gazous[i]}
@@ -90,7 +90,7 @@
       {/section}
       </table>
       <br />
-      <input type="hidden" name="product_count" value="<?php print $product_count;?>">
+      <input type="hidden" name="product_count" value={$products_count}>
       <input type="submit" value="数量変更"><br /><br />
     </form>
 

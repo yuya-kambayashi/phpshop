@@ -7,7 +7,6 @@
   $smarty->cache_dir = "./cache";
   $smarty->config_dir = "./configs";
 
-
   session_start();
   session_regenerate_id(true);
 
@@ -82,7 +81,7 @@
     }
 
     
-    $smarty->assign( 'products_length', count($pro_names));
+    $smarty->assign( 'products_count', count($pro_names));
 
     $smarty->assign( 'pro_names', $pro_names);
     $smarty->assign( 'pro_prices', $pro_prices);

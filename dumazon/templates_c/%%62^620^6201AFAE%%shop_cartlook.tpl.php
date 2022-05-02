@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2022-05-02 10:01:48
+<?php /* Smarty version 2.6.31, created on 2022-05-02 10:23:29
          compiled from shop_cartlook.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'math', 'shop_cartlook.tpl', 82, false),)), $this); ?>
@@ -52,7 +52,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'math', 'sho
         <?php unset($this->_sections['i']);
 $this->_sections['i']['name'] = 'i';
 $this->_sections['i']['start'] = (int)0;
-$this->_sections['i']['loop'] = is_array($_loop=$this->_tpl_vars['products_length']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
+$this->_sections['i']['loop'] = is_array($_loop=$this->_tpl_vars['products_count']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
 $this->_sections['i']['show'] = true;
 $this->_sections['i']['max'] = $this->_sections['i']['loop'];
 $this->_sections['i']['step'] = 1;
@@ -137,9 +137,8 @@ $this->_sections['i']['last']       = ($this->_sections['i']['iteration'] == $th
       <?php endfor; endif; ?>
       </table>
       <br />
-      <input type="hidden" name="product_count" value="<?php echo '<?php'; ?>
- print $product_count;<?php echo '?>'; ?>
-">
+      <input type="hidden" name="product_count" value=<?php echo $this->_tpl_vars['products_count']; ?>
+>
       <input type="submit" value="数量変更"><br /><br />
     </form>
 
