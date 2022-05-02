@@ -79,7 +79,8 @@
           </td>
           <td>
             <!-- 小計 -->
-            {$pro_price_webs[i]} * {$pro_quantities[i]}円
+            { math equation=a*b a=$pro_price_webs[i] b=$pro_quantities[i] assign=shoukei}
+            {$shoukei}円
           </td>
           <td>
             <!-- 削除 -->

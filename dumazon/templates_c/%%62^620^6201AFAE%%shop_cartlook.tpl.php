@@ -1,5 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2022-05-02 09:53:42
+<?php /* Smarty version 2.6.31, created on 2022-05-02 10:01:48
          compiled from shop_cartlook.tpl */ ?>
+<?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
+smarty_core_load_plugins(array('plugins' => array(array('function', 'math', 'shop_cartlook.tpl', 82, false),)), $this); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -121,8 +123,9 @@ $this->_sections['i']['last']       = ($this->_sections['i']['iteration'] == $th
           </td>
           <td>
             <!-- 小計 -->
-            <?php echo $this->_tpl_vars['pro_price_webs'][$this->_sections['i']['index']]; ?>
- * <?php echo $this->_tpl_vars['pro_quantities'][$this->_sections['i']['index']]; ?>
+            <?php echo smarty_function_math(array('equation' => "a*b",'a' => $this->_tpl_vars['pro_price_webs'][$this->_sections['i']['index']],'b' => $this->_tpl_vars['pro_quantities'][$this->_sections['i']['index']],'assign' => 'shoukei'), $this);?>
+
+            <?php echo $this->_tpl_vars['shoukei']; ?>
 円
           </td>
           <td>
