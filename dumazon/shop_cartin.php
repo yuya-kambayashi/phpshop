@@ -34,7 +34,7 @@
       }
     }
     $cart[] = $pro_code;
-    $kazu[] = 1;
+    $kazu[] = 2;
     $_SESSION['cart']=$cart;
     $_SESSION['kazu']=$kazu;
     

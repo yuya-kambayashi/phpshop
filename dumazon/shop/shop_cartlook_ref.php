@@ -126,19 +126,24 @@
             <?php print $pro_price[$i]; ?>円
           </td>
           <td>
+            web価格
             <?php print $pro_price_web[$i]; ?>円
           </td>        
           <td>
+            在庫
             <input type="hidden" name="pro_stock<?php print $i;?>" value="<?php print $pro_stock[$i];?>">
             <?php print $pro_stock[$i];?>個
           </td>
           <td>
+            数量
             <input type="number" name="kazu<?php print $i;?>" style="width:50px" min="1" max="10" value="<?php print $kazu[$i];?>">個
           </td>
           <td>
+            小計
             <?php print $pro_price_web[$i] * $kazu[$i];?>円
           </td>
           <td>
+            削除
             <input type="checkbox" name="sakujo<?php print $i;?>">
           </td>
         </tr>
