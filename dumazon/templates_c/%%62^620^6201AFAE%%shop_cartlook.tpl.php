@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2022-05-09 08:53:24
+<?php /* Smarty version 2.6.31, created on 2022-05-09 10:02:35
          compiled from shop_cartlook.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'cat', 'shop_cartlook.tpl', 74, false),array('function', 'math', 'shop_cartlook.tpl', 86, false),)), $this); ?>
@@ -145,9 +145,7 @@ $this->_sections['i']['last']       = ($this->_sections['i']['iteration'] == $th
 >
       <input type="submit" value="数量変更"><br /><br />
     </form>
-    <?php echo $this->_tpl_vars['pro_quantities'][0]; ?>
-
-
+    
     <?php if ($this->_tpl_vars['member_login'] == false): ?>
       <a href="shop_form.html">レジに進む</a><br />   
     <?php else: ?>

@@ -94,8 +94,6 @@
     $smarty->assign( 'pro_gazous', $pro_gazous);
     $smarty->assign( 'pro_quantities', $pro_quantities);
 
-    //print var_dump($pro_quantities);
-
     $dbh = null;
 
   }catch (Exception $e){
