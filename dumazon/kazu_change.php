@@ -25,6 +25,7 @@
 
   print var_dump($post).'<br />';
   print "pro_stock0 " . $post['pro_stock0'].'<br /><br />';
+  print "pro_quantity0 " . $post['pro_quantity0'].'<br /><br />';
   
 
 

@@ -77,7 +77,9 @@
           </td>        
           <td>
             <!-- 数量 -->
-            <input type="number" name={$pro_quantities[i]} style="width:50px" min="1" max="10" value={$pro_quantities[i]}>個
+            {assign var=pro_quantity_name value='pro_quantity'}
+            {assign var=pro_quantity_with_index value=$pro_quantity_name|cat:$smarty.section.i.index}
+            <input type="number" name={$pro_quantity_with_index} style="width:50px" min="1" max="10" value={$pro_quantities[i]}>個
           </td>
           <td>
             <!-- 小計 -->

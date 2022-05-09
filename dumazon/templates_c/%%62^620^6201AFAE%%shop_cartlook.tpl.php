@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2022-05-09 08:25:01
+<?php /* Smarty version 2.6.31, created on 2022-05-09 08:35:32
          compiled from shop_cartlook.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'cat', 'shop_cartlook.tpl', 74, false),array('function', 'math', 'shop_cartlook.tpl', 84, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'cat', 'shop_cartlook.tpl', 74, false),array('function', 'math', 'shop_cartlook.tpl', 86, false),)), $this); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -119,7 +119,9 @@ $this->_sections['i']['last']       = ($this->_sections['i']['iteration'] == $th
           </td>        
           <td>
             <!-- 数量 -->
-            <input type="number" name=<?php echo $this->_tpl_vars['pro_quantities'][$this->_sections['i']['index']]; ?>
+            <?php $this->assign('pro_quantity_name', 'pro_quantity'); ?>
+            <?php $this->assign('pro_quantity_with_index', ((is_array($_tmp=$this->_tpl_vars['pro_quantity_name'])) ? $this->_run_mod_handler('cat', true, $_tmp, $this->_sections['i']['index']) : smarty_modifier_cat($_tmp, $this->_sections['i']['index']))); ?>
+            <input type="number" name=<?php echo $this->_tpl_vars['pro_quantity_with_index']; ?>
  style="width:50px" min="1" max="10" value=<?php echo $this->_tpl_vars['pro_quantities'][$this->_sections['i']['index']]; ?>
 >個
           </td>
