@@ -94,15 +94,11 @@
       <input type="submit" value="数量変更"><br /><br />
     </form>
 
-    <?php
-      if(isset($_SESSION['member_login'])==false){
-
-        print '<a href="shop_form.html">レジに進む</a><br />';
-      }
-      else{
-        print '<a href="shop_kantan_check.php">レジに進む</a><br />';
-      }
-    ?>
+    {if $member_login == false}
+      <a href="shop_form.html">レジに進む</a><br />   
+    {else}
+      <a href="shop_kantan_check.php">レジに進む</a><br />
+    {/if}
 
     <br />
     <input type="button" onclick="history.back()" value="戻る">
