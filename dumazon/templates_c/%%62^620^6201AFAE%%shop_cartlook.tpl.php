@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.31, created on 2022-05-02 10:23:29
+<?php /* Smarty version 2.6.31, created on 2022-05-09 08:25:01
          compiled from shop_cartlook.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'math', 'shop_cartlook.tpl', 82, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'cat', 'shop_cartlook.tpl', 74, false),array('function', 'math', 'shop_cartlook.tpl', 84, false),)), $this); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -109,7 +109,9 @@ $this->_sections['i']['last']       = ($this->_sections['i']['iteration'] == $th
           </td>
           <td>
             <!-- 在庫 -->
-            <input type="hidden" name=<?php echo $this->_tpl_vars['pro_stocks'][$this->_sections['i']['index']]; ?>
+            <?php $this->assign('pro_stock_name', 'pro_stock'); ?>
+            <?php $this->assign('pro_stock_with_index', ((is_array($_tmp=$this->_tpl_vars['pro_stock_name'])) ? $this->_run_mod_handler('cat', true, $_tmp, $this->_sections['i']['index']) : smarty_modifier_cat($_tmp, $this->_sections['i']['index']))); ?>
+            <input type="hidden" name=<?php echo $this->_tpl_vars['pro_stock_with_index']; ?>
  value=<?php echo $this->_tpl_vars['pro_stocks'][$this->_sections['i']['index']]; ?>
 >
             <?php echo $this->_tpl_vars['pro_stocks'][$this->_sections['i']['index']]; ?>
@@ -141,11 +143,14 @@ $this->_sections['i']['last']       = ($this->_sections['i']['iteration'] == $th
 >
       <input type="submit" value="数量変更"><br /><br />
     </form>
+    <?php echo $this->_tpl_vars['pro_quantities'][0]; ?>
 
-    <?php echo '<?php'; ?>
 
-      if(isset($_SESSION['member_login'])==false)      else    <?php echo '?>'; ?>
-
+    <?php if ($this->_tpl_vars['member_login'] == false): ?>
+      <a href="shop_form.html">レジに進む</a><br />   
+    <?php else: ?>
+      <a href="shop_kantan_check.php">レジに進む</a><br />
+    <?php endif; ?>
 
     <br />
     <input type="button" onclick="history.back()" value="戻る">

@@ -6,7 +6,6 @@
   $smarty->cache_dir = "./cache";
   $smarty->config_dir = "./configs";
 
-  $smarty->display('kazu_change.tpl');
 
   session_start();
   session_regenerate_id(true);
@@ -16,24 +15,28 @@
     $smarty->assign( 'member_name', $_SESSION['member_name']);
   }
 
-  print 'aaa';
-
   require_once($_SERVER['DOCUMENT_ROOT']. '/dumazon/common/common.php');
 
   $post = sanitize($_POST);
 
   $product_count = $_POST['product_count'];
 
-  print $product_count;
+  $smarty->assign( 'product_count', $product_count);
 
-  $smarty->assign( 'products_count', $product_count);
-  // for($i = 0; $i < $product_count; $i++){
+  print var_dump($post).'<br />';
+  print "pro_stock0 " . $post['pro_stock0'].'<br /><br />';
+  
 
-  //   if (preg_match("/\A[0-9]+\z/", $post['kazu'.$i])==0){
+
+  for($i = 0; $i < $product_count; $i++){
+
+    if (preg_match("/\A[0-9]+\z/", $post['pro_stock'.$i])==0){
   //     print '数量に誤りがあります。<br />';
   //     print '<a href="shop_cartlook.php">カートに戻る</a>';
   //     exit();
-  //   }
+
+        $smarty->assign( 'has_count_error', true);
+    }
 
   //   if ($post['kazu'.$i] < 1 || 10 < $post['kazu'.$i]){
   //     print '数量は必ず1以上10個までです。<br />';
@@ -60,10 +63,13 @@
   //     array_splice($kazu, $i, 1);
 
   //   }
-  // }
+  }
   // $_SESSION['cart'] = $cart;
   // $_SESSION['kazu'] = $kazu;
 
   // header('Location:shop_cartlook.php');
   // exit();
+    
+  $smarty->display('kazu_change.tpl');
+
 ?>

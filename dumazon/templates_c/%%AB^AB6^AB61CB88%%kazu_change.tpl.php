@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2022-05-02 10:16:16
+<?php /* Smarty version 2.6.31, created on 2022-05-09 08:17:24
          compiled from kazu_change.tpl */ ?>
 <!DOCTYPE html>
 <html>
@@ -24,9 +24,15 @@
       <br />
     <?php endif; ?>
 
+    <?php if ($this->_tpl_vars['has_count_error'] == true): ?>
+      数量に誤りがあります。<br />
+      <a href="./member_login.html">ログイン</a><br />
+      <a href="shop_cartlook.php">カートに戻る</a>
+    <?php endif; ?>
 
-    製品数<?php echo $this->_tpl_vars['products_count']; ?>
+    製品数<?php echo $this->_tpl_vars['product_count']; ?>
 個<br />
+    
 
 
   </body>

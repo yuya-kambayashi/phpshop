@@ -21,8 +21,14 @@
       <br />
     {/if}
 
+    {if $has_count_error == true}
+      数量に誤りがあります。<br />
+      <a href="./member_login.html">ログイン</a><br />
+      <a href="shop_cartlook.php">カートに戻る</a>
+    {/if}
 
-    製品数{$products_count}個<br />
+    製品数{$product_count}個<br />
+    
 
 
   </body>

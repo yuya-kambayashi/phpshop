@@ -70,7 +70,9 @@
           </td>
           <td>
             <!-- 在庫 -->
-            <input type="hidden" name={$pro_stocks[i]} value={$pro_stocks[i]}>
+            {assign var=pro_stock_name value='pro_stock'}
+            {assign var=pro_stock_with_index value=$pro_stock_name|cat:$smarty.section.i.index}
+            <input type="hidden" name={$pro_stock_with_index} value={$pro_stocks[i]}>
             {$pro_stocks[i]}
           </td>        
           <td>
@@ -93,6 +95,7 @@
       <input type="hidden" name="product_count" value={$products_count}>
       <input type="submit" value="数量変更"><br /><br />
     </form>
+    {$pro_quantities[0]}
 
     {if $member_login == false}
       <a href="shop_form.html">レジに進む</a><br />   
