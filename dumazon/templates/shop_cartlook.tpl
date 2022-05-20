@@ -88,7 +88,9 @@
           </td>
           <td>
             <!-- 削除 -->
-            <input type="checkbox" name={$sakujo[i]}>
+            {assign var=sakujo_name value='sakujo'}
+            {assign var=sakujo_with_index value=$sakujo_name|cat:$smarty.section.i.index}
+            <input type="checkbox" name={$sakujo_with_index}>
           </td>
         </tr>
       {/section}

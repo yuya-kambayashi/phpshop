@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.31, created on 2022-05-09 10:02:35
+<?php /* Smarty version 2.6.31, created on 2022-05-09 10:43:34
          compiled from shop_cartlook.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'cat', 'shop_cartlook.tpl', 74, false),array('function', 'math', 'shop_cartlook.tpl', 86, false),)), $this); ?>
@@ -134,7 +134,9 @@ $this->_sections['i']['last']       = ($this->_sections['i']['iteration'] == $th
           </td>
           <td>
             <!-- 削除 -->
-            <input type="checkbox" name=<?php echo $this->_tpl_vars['sakujo'][$this->_sections['i']['index']]; ?>
+            <?php $this->assign('sakujo_name', 'sakujo'); ?>
+            <?php $this->assign('sakujo_with_index', ((is_array($_tmp=$this->_tpl_vars['sakujo_name'])) ? $this->_run_mod_handler('cat', true, $_tmp, $this->_sections['i']['index']) : smarty_modifier_cat($_tmp, $this->_sections['i']['index']))); ?>
+            <input type="checkbox" name=<?php echo $this->_tpl_vars['sakujo_with_index']; ?>
 >
           </td>
         </tr>

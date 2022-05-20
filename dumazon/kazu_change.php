@@ -6,6 +6,8 @@
 
   $post = sanitize($_POST);
 
+  print var_dump($post);
+
   $product_count = $_POST['product_count'];
   for($i = 0; $i < $product_count; $i++){
 
@@ -35,13 +37,22 @@
 
   $cart=$_SESSION['cart'];
 
-  for($i = $product_count; 0 <= $i; $i--){
+  for($i = $product_count; 0 < $i; $i--){
 
-    if (isset($_POST['sakujo'.$i]) == true){
+    if (isset($post['sakujo'.$i]) == true){
+
+      print '削除対象：';
+      print $i;
+      print '<br />';
 
       array_splice($cart, $i, 1);
       array_splice($kazu, $i, 1);
 
+    }
+    else{
+      print '削除対象外：';
+      print $i;
+      print '<br />';
     }
   }
   $_SESSION['cart'] = $cart;
